@@ -18,6 +18,7 @@ public class MovieDAO
     }
 
     public List<Movie> getAllMovies() throws SQLException {
+        /*
         ArrayList<Movie> movies = new ArrayList<>();
 
         try(Connection conn = (Connection) connection){
@@ -29,14 +30,14 @@ public class MovieDAO
                 while (rs.next()){
                     int id = rs.getInt("Id");
                     String title = rs.getString("Title");
-                    
+
                 }
             }
 
-        }catch (){
+        }catch (SQLException throwable){
 
-        }
-        return movies;
+        }*/
+        return null;
     }
 
     public void createMovie(String title, float movieRating, String url, String imgUrl){

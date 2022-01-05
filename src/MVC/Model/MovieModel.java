@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class MovieModel
         movieList = FXCollections.observableArrayList();
     }
 
-   public ObservableList<Movie> listToObservableList(){
+   public ObservableList<Movie> listToObservableList() throws SQLException {
         List<Movie> tempMovieList = new ArrayList<Movie>();
         tempMovieList = this.movieManager.getAllMovies();
         for(Movie movie : tempMovieList){
@@ -35,7 +36,7 @@ public class MovieModel
         movieManager.deleteMovie(movie);
     }
 
-    public void searchMovie(String query){
+    public void searchMovie(String query) throws SQLException {
         List<Movie> searchResults = movieManager.searchMovies(query);
         movieList.clear();
         movieList.addAll(searchResults);
