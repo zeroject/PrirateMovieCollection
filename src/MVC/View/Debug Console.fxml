@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.DebugConsole">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.DEBUGController">
    <children>
-      <Label text="DEBUG CONSOLE">
+      <Label text="DEBUG CONSOLE" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextArea layoutY="21.0" prefHeight="380.0" prefWidth="600.0" />
+      <TextArea fx:id="textAreaUI" layoutY="21.0" pickOnBounds="false" prefHeight="380.0" prefWidth="600.0" style="-fx-background-color: BLACK;" />
+      <Button fx:id="closeButton" layoutX="576.0" layoutY="-2.0" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="0.0" prefWidth="24.0" style="-fx-background-color: BLACK;" text="X" textFill="WHITE">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
