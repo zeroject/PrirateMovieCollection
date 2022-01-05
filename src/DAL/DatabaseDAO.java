@@ -6,6 +6,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class DatabaseDAO
@@ -18,16 +19,21 @@ public class DatabaseDAO
         properties.load(new FileInputStream(DB_SETTINGS));
         dataSource = new SQLServerDataSource();
         dataSource.setServerName(properties.getProperty("IpAddress"));
-        dataSource.setServerName(properties.getProperty("Database"));
-        dataSource.setServerName(properties.getProperty("Id"));
-        dataSource.setServerName(properties.getProperty("Password"));
+        dataSource.setDatabaseName(properties.getProperty("Database"));
+        dataSource.setUser(properties.getProperty("Id"));
+        dataSource.setPassword(properties.getProperty("Password"));
     }
 
     public Connection getConnection() throws SQLServerException {
         return dataSource.getConnection();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, SQLException {
+        DatabaseDAO databaseConnector = new DatabaseDAO();
+        Connection connection = databaseConnector.getConnection();
+
+        System.out.println("Did it open? " + !connection.isClosed());
+        connection.close();
 
     }
 
