@@ -1,6 +1,7 @@
 package MVC;
 
 import BE.Movie;
+import MVC.Model.MovieModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,6 +21,8 @@ import java.util.ResourceBundle;
 
 public class MainWindow implements Initializable
 {
+    MovieModel movieModel = new MovieModel();
+
     @FXML
     private TableView<Movie> movieTableView;
     @FXML
@@ -29,7 +32,7 @@ public class MainWindow implements Initializable
     @FXML
     private ComboBox comboBox;
 
-    public MainWindow(){
+    public MainWindow() throws IOException{
 
     }
 
@@ -46,8 +49,8 @@ public class MainWindow implements Initializable
         movieColumn.setCellValueFactory(new PropertyValueFactory<Movie, String>("Movie"));
         try
         {
-            movieTableView.setItems();
-        }catch (IOException | SQLException e){
+            movieTableView.setItems(movieModel.listToObservableList());
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
