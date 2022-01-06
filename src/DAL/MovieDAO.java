@@ -1,13 +1,14 @@
 package DAL;
 
 import BE.Movie;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
-import java.util.List;
 
 public class MovieDAO
 {
@@ -46,8 +47,32 @@ public class MovieDAO
         return movies;
     }
 
-    public void createMovie(String title, float movieRating, String url, String imgUrl){
-        //TODO Implement Create movie
+    public Movie createMovie(String title, float movieRating, String url, String imgUrl, Date lastView) throws SQLServerException {
+        int newestID = -1;
+
+        String sql = "INSERT INTO SONG(MovieTitle, MovieRating, MovieFile, MovieImageFile, MovieLastView) values (?,?,?,?,?);";
+        Connection conn = connection.getConnection();
+
+        try(PreparedStatement preparedStatement = conn.prepareStatement(sql)){
+            preparedStatement.setString(1, title);
+            preparedStatement.setFloat(2, movieRating);
+            preparedStatement.setString(3, url);
+            preparedStatement.setString(4, imgUrl);
+            preparedStatement.setDate(5, lastView);
+            preparedStatement.addBatch();
+            preparedStatement.executeBatch();
+
+            sql = "SELECT TOP(1) * FROM Movies ORDER by ID desc";
+            PreparedStatement preparedStmt = conn.prepareStatement(sql);
+            ResultSet rs = preparedStmt.executeQuery();
+            while (rs.next()) {
+                newestID = rs.getInt("MovieId");
+            }
+            preparedStatement.executeBatch();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return new Movie(newestID, title, movieRating, url, imgUrl, lastView);
     }
     public void updateMovie(Movie movie){
         //TODO Implement
