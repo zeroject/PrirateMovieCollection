@@ -18,9 +18,9 @@ public class DatabaseDAO
         Properties properties = new Properties();
         properties.load(new FileInputStream(DB_SETTINGS));
         dataSource = new SQLServerDataSource();
-        dataSource.setServerName(properties.getProperty("IpAddress"));
+        dataSource.setServerName(properties.getProperty("Server"));
         dataSource.setDatabaseName(properties.getProperty("Database"));
-        dataSource.setUser(properties.getProperty("Id"));
+        dataSource.setUser(properties.getProperty("User"));
         dataSource.setPassword(properties.getProperty("Password"));
     }
 

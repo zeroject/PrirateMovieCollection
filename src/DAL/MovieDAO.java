@@ -18,26 +18,32 @@ public class MovieDAO
     }
 
     public List<Movie> getAllMovies() throws SQLException {
-        /*
+
         ArrayList<Movie> movies = new ArrayList<>();
 
-        try(Connection conn = (Connection) connection){
+        try(Connection conn = connection.getConnection()){
             String sql = "SELECT * FROM Movies;";
             Statement statement = conn.createStatement();
 
             if (statement.execute(sql)){
                 ResultSet rs = statement.getResultSet();
                 while (rs.next()){
-                    int id = rs.getInt("Id");
-                    String title = rs.getString("Title");
+                    int id = rs.getInt("MovieId");
+                    String title = rs.getString("MovieTitle");
+                    float rating = rs.getFloat("MovieRating");
+                    String fileUrl = rs.getString("MovieFile");
+                    String imgUrl = rs.getString("MovieImageFile");
+                    Date lastView = rs.getDate("MovieLastView");
 
+                    Movie movie = new Movie(id, title, rating, fileUrl, imgUrl, lastView);
+                    movies.add(movie);
                 }
             }
 
         }catch (SQLException throwable){
-
-        }*/
-        return null;
+            throwable.printStackTrace();
+        }
+        return movies;
     }
 
     public void createMovie(String title, float movieRating, String url, String imgUrl){
