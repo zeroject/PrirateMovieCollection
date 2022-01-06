@@ -24,12 +24,12 @@
                   </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
-                      <Menu mnemonicParsing="false" text="Debug">
-                           <items>
-                              <MenuItem mnemonicParsing="false" onAction="#debugConsole" text="Debug Console" />
-                           </items>
-                      </Menu>
                     <MenuItem mnemonicParsing="false" text="About" />
+                        <Menu mnemonicParsing="false" text="Developer Tools">
+                          <items>
+                              <MenuItem mnemonicParsing="false" onAction="#debugConsole" text="Debug Console" />
+                          </items>
+                        </Menu>
                   </items>
                 </Menu>
               </menus>
