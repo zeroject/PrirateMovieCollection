@@ -81,7 +81,7 @@ public class MainWindow implements Initializable
 
 
     /*
-    *                       **WARNING DELETE THIS BEFORE HANDING IN**
+    *                     **WARNING THIS PART OF THE CODE IS NOT OURS**
     *                        **DEBUG CONSOLE USED FROM Cool IT Help.
     * **LINK - https://www.coolithelp.com/2020/06/javafx-redirect-console-output-to.html - LINK**
      */
