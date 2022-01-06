@@ -17,10 +17,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
-import java.io.IOException;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -53,6 +50,25 @@ public class MainWindow implements Initializable
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void createMovieScene() throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("View/Create Movie.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println(stage + "Laoded and the scene : " + scene + "has loaded");
+    }
+    public void chooseMovieScene() throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("View/Choose Movie.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println(stage + "Laoded and the scene : " + scene + "has loaded");
     }
 
 
