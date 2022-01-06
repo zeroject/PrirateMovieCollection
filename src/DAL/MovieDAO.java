@@ -18,7 +18,7 @@ public class MovieDAO
         connection = new DatabaseDAO();
     }
 
-    public List<Movie> getAllMovies() throws SQLException {
+    public List<Movie> getAllMovies() {
 
         ArrayList<Movie> movies = new ArrayList<>();
 
@@ -34,7 +34,7 @@ public class MovieDAO
                     float rating = rs.getFloat("MovieRating");
                     String fileUrl = rs.getString("MovieFile");
                     String imgUrl = rs.getString("MovieImageFile");
-                    Date lastView = rs.getDate("MovieLastView");
+                    String lastView = rs.getString("MovieLastView");
 
                     Movie movie = new Movie(id, title, rating, fileUrl, imgUrl, lastView);
                     movies.add(movie);
@@ -47,10 +47,10 @@ public class MovieDAO
         return movies;
     }
 
-    public Movie createMovie(String title, float movieRating, String url, String imgUrl, Date lastView) throws SQLServerException {
+    public Movie createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLServerException {
         int newestID = -1;
 
-        String sql = "INSERT INTO SONG(MovieTitle, MovieRating, MovieFile, MovieImageFile, MovieLastView) values (?,?,?,?,?);";
+        String sql = "INSERT INTO Movies(MovieTitle, MovieRating, MovieFile, MovieImageFile, MovieLastView) values (?,?,?,?,?);";
         Connection conn = connection.getConnection();
 
         try(PreparedStatement preparedStatement = conn.prepareStatement(sql)){
@@ -58,12 +58,12 @@ public class MovieDAO
             preparedStatement.setFloat(2, movieRating);
             preparedStatement.setString(3, url);
             preparedStatement.setString(4, imgUrl);
-            preparedStatement.setDate(5, lastView);
+            preparedStatement.setString(5, lastView);
             preparedStatement.addBatch();
             preparedStatement.executeBatch();
 
-            sql = "SELECT TOP(1) * FROM Movies ORDER by ID desc";
-            PreparedStatement preparedStmt = conn.prepareStatement(sql);
+            String sql2 = "SELECT TOP(1) * FROM Movies ORDER by ID desc";
+            PreparedStatement preparedStmt = conn.prepareStatement(sql2);
             ResultSet rs = preparedStmt.executeQuery();
             while (rs.next()) {
                 newestID = rs.getInt("MovieId");

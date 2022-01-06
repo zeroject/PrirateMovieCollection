@@ -8,7 +8,7 @@ public class Movie {
     private float movieRating;
     private String url;
     private String urlImg;
-    public Movie(int id, String title, float movieRating, String url, String urlImg, Date lastView){
+    public Movie(int id, String title, float movieRating, String url, String urlImg, String lastView){
         this.id = id;
         this.title = title;
         this.movieRating = movieRating;

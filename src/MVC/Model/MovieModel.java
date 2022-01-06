@@ -31,7 +31,7 @@ public class MovieModel
         return movieList;
     }
 
-    public void createMovie(String title, float movieRating, String url, String imgUrl, Date lastView) throws SQLServerException {
+    public void createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLServerException {
         movieManager.createMovie(title, movieRating, url, imgUrl, lastView);
     }
     public void deleteSong(Movie movie){
