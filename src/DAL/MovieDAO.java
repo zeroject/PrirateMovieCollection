@@ -73,6 +73,7 @@ public class MovieDAO
         }
         return null;
     }
+
     public void updateMovie(Movie movie){
         try(Connection conn = connection.getConnection()){
             String sql = "UPDATE Movies SET MovieTitle=?, MovieRating=?, MovieFile=?, MovieImageFile=? WHERE MovieId=?;";
