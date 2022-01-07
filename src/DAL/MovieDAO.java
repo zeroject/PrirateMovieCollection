@@ -77,6 +77,15 @@ public class MovieDAO
         //TODO Implement
     }
     public void deleteMovie(Movie movie){
-        //TODO Implement
+        try(Connection conn = connection.getConnection()){
+            String sql = "DELETE FROM SONG WHERE Id =?;";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, movie.getId());
+            if(preparedStatement.executeUpdate() != 1){
+                throw new Exception("Could not delete Song");
+            }
+        } catch (Exception throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
