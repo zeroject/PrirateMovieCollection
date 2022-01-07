@@ -2,6 +2,7 @@ package MVC;
 
 import BE.Movie;
 import BLL.MovieManager;
+import MVC.Model.DeletingModel;
 import MVC.Model.MovieModel;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -25,7 +26,7 @@ import java.util.ResourceBundle;
 
 public class MainWindow implements Initializable
 {
-    MovieModel movieModel = new MovieModel();
+    MovieModel movieModel;
 
     @FXML
     private TableView<Movie> movieTableView;
@@ -36,9 +37,11 @@ public class MainWindow implements Initializable
     @FXML
     private ComboBox comboBox;
 
+
     public MainWindow() throws IOException{
         movieColumn = new TableColumn<MovieManager, String>();
         movieTableView = new TableView<>();
+        movieModel = new MovieModel();
     }
 
 
@@ -61,7 +64,7 @@ public class MainWindow implements Initializable
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        System.out.println(stage + "Laoded and the scene : " + scene + "has loaded");
+        System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
     }
     public void chooseMovieScene() throws IOException
     {
@@ -70,7 +73,18 @@ public class MainWindow implements Initializable
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        System.out.println(stage + "Laoded and the scene : " + scene + "has loaded");
+        System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
+        DeletingModel.isDELETING = false;
+    }
+    public void chooseMovieSceneDEL() throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("View/Choose Movie.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
+        DeletingModel.isDELETING = true;
     }
 
 
