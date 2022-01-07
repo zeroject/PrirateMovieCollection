@@ -43,11 +43,11 @@ public class CreateMovie
     public void chooseImageFile(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
-        fileChooser.setInitialDirectory(new File("image/" ));
+        fileChooser.setInitialDirectory(new File("Image/" ));
         File file = fileChooser.showOpenDialog(null);
 
         if (file != null){
-            textFieldImgUrl.setText("image\\" + file.getName());
+            textFieldImgUrl.setText("Image\\" + file.getName());
 
         }
     }
@@ -57,30 +57,14 @@ public class CreateMovie
      */
     public void chooseMovieFile(){
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Music Files", "*.mp3", "*.wav"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Music Files", "*.mp4", "*.mpeg4"));
         fileChooser.setInitialDirectory(new File("Movies/" ));
         File file = fileChooser.showOpenDialog(null);
 
 
         if (file != null){
             textFieldUrl.setText("Movies\\" + file.getName());
-            /*
-            Media hit = new Media(new File(file.getAbsolutePath()).toURI().toString());
-            hit.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
-                if (c.wasAdded()) {
-                    if ("artist".equals(c.getKey())) {
-                        String artist = c.getValueAdded().toString();
-                        songArtist.setText(artist);
-                    }
-                    else if ("title".equals(c.getKey())) {
-                        String title = c.getValueAdded().toString();
-                        songTitle.setText(title);
-                    }
-                }
-            });
-
-            mediaPlayer = new MediaPlayer(hit);
-            */
+            textFieldTitle.setText(file.getName());
         }
     }
 }
