@@ -1,6 +1,7 @@
 package MVC;
 
 import BE.Movie;
+import BLL.MovieManager;
 import MVC.Model.MovieModel;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -36,14 +37,15 @@ public class MainWindow implements Initializable
     private ComboBox comboBox;
 
     public MainWindow() throws IOException{
-
+        movieColumn = new TableColumn<MovieManager, String>();
+        movieTableView = new TableView<>();
     }
 
 
 
     @Override public void initialize(URL location, ResourceBundle resources)
     {
-        movieColumn.setCellValueFactory(new PropertyValueFactory<Movie, String>("Movie"));
+        movieColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, String>("MovieTitle"));
         try
         {
             movieTableView.setItems(movieModel.listToObservableList());
