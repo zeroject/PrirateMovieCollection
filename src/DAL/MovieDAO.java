@@ -51,18 +51,15 @@ public class MovieDAO
         try (Connection conn = connection.getConnection()){
             String sql = "INSERT INTO Movies(MovieTitle, MovieRating, MovieFile, MovieImageFile, MovieLastView) values (?,?,?,?,?);";
 
-            try(PreparedStatement preparedStatement = conn.prepareStatement(sql)){
+            try(PreparedStatement preparedStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
                 preparedStatement.setString(1, title);
                 preparedStatement.setFloat(2, movieRating);
                 preparedStatement.setString(3, url);
                 preparedStatement.setString(4, imgUrl);
                 preparedStatement.setString(5, lastView);
-                preparedStatement.addBatch();
-                preparedStatement.executeBatch();
+                preparedStatement.executeUpdate();
+                ResultSet rs = preparedStatement.getGeneratedKeys();
 
-                String sql2 = "SELECT TOP(1) * FROM Movies ORDER by ID desc";
-                PreparedStatement preparedStmt = conn.prepareStatement(sql2);
-                ResultSet rs = preparedStmt.executeQuery();
                 int id = 0;
                 if(rs.next()){
                     id = rs.getInt(1);
