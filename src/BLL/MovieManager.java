@@ -21,7 +21,7 @@ public class MovieManager
         movieDAO = new MovieDAO();
     }
 
-    public void createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLServerException {
+    public void createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLException {
         movieDAO.createMovie(title,movieRating,url,imgUrl, lastView);
     }
     public void updateMovie(Movie movie){

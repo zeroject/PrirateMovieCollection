@@ -58,7 +58,7 @@ public class MoviePlayer {
 
     public void setMediaWindow()
     {
-        mp4Player.setViewport();
+        //mp4Player.setViewport();
     }
 
 }
