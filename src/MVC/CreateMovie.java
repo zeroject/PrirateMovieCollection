@@ -32,9 +32,8 @@ public class CreateMovie
     public void createMovie() throws SQLException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime systemDate = LocalDateTime.now();
-        System.out.println(dtf.format(systemDate));
 
-        movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), systemDate.toString());
+        movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), dtf.format(systemDate));
     }
 
     /**
@@ -53,7 +52,7 @@ public class CreateMovie
     }
 
     /**
-     * Opens a file explorer to choose a song (*.mp3, *.wav)
+     * Opens a file explorer to choose a movie (*.mp4, *.mpeg4)
      */
     public void chooseMovieFile(){
         FileChooser fileChooser = new FileChooser();
