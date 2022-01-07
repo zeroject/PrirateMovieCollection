@@ -45,7 +45,7 @@ public class MainWindow implements Initializable
 
     @Override public void initialize(URL location, ResourceBundle resources)
     {
-        movieColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, String>("MovieTitle"));
+        movieColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, String>("Title"));
         try
         {
             movieTableView.setItems(movieModel.listToObservableList());
