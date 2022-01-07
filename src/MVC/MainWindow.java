@@ -51,7 +51,7 @@ public class MainWindow implements Initializable
         movieColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, String>("Title"));
         try
         {
-            movieTableView.setItems(movieModel.listToObservableList());
+            movieTableView.setItems(movieModel.getObservableMovie());
         } catch (Exception e){
             e.printStackTrace();
         }
