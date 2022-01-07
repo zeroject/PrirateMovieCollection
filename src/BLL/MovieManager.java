@@ -41,4 +41,9 @@ public class MovieManager
     public String updateMovieImage(Movie movie){
         return movie.getUrlImg();
     }
+
+    public List<Movie> getSearchMovies (List<Movie> movies, String keyword)
+    {
+        return movieSearcher.search(movies, keyword);
+    }
 }
