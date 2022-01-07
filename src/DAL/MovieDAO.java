@@ -74,15 +74,29 @@ public class MovieDAO
         return null;
     }
     public void updateMovie(Movie movie){
-        //TODO Implement
+        try(Connection conn = connection.getConnection()){
+            String sql = "UPDATE Movies SET MovieTitle=?, MovieRating=?, MovieFile=?, MovieImageFile=? WHERE MovieId=?;";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, movie.getTitle());
+            preparedStatement.setFloat(2, movie.getMovieRating());
+            preparedStatement.setString(3, movie.getUrl());
+            preparedStatement.setString(4, movie.getUrlImg());
+            preparedStatement.setInt(5, movie.getId());
+            if(preparedStatement.executeUpdate() != 1){
+                throw new Exception("Could not update Movie");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
     public void deleteMovie(Movie movie){
         try(Connection conn = connection.getConnection()){
-            String sql = "DELETE FROM SONG WHERE Id =?;";
+            String sql = "DELETE FROM Movies WHERE MovieId =?;";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, movie.getId());
             if(preparedStatement.executeUpdate() != 1){
-                throw new Exception("Could not delete Song");
+                throw new Exception("Could not delete Movie");
             }
         } catch (Exception throwables) {
             throwables.printStackTrace();

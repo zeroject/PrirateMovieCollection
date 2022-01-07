@@ -2,8 +2,14 @@ package MVC;
 
 import MVC.Model.MovieModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import javafx.collections.MapChangeListener;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.FileChooser;
+
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -29,5 +35,36 @@ public class CreateMovie
         System.out.println(dtf.format(systemDate));
 
         movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), systemDate.toString());
+    }
+
+    /**
+     * Opens a file explorer to choose an image (*.png, *.jpg, *.jpeg)
+     */
+    public void chooseImageFile(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        fileChooser.setInitialDirectory(new File("Image/" ));
+        File file = fileChooser.showOpenDialog(null);
+
+        if (file != null){
+            textFieldImgUrl.setText("Image\\" + file.getName());
+
+        }
+    }
+
+    /**
+     * Opens a file explorer to choose a song (*.mp3, *.wav)
+     */
+    public void chooseMovieFile(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Music Files", "*.mp4", "*.mpeg4"));
+        fileChooser.setInitialDirectory(new File("Movies/" ));
+        File file = fileChooser.showOpenDialog(null);
+
+
+        if (file != null){
+            textFieldUrl.setText("Movies\\" + file.getName());
+            textFieldTitle.setText(file.getName());
+        }
     }
 }

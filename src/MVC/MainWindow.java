@@ -55,6 +55,14 @@ public class MainWindow implements Initializable
         } catch (Exception e){
             e.printStackTrace();
         }
+        searchTextField.textProperty().addListener(((observableValue, oldValue, newValue) ->
+        {
+            try {
+                movieModel.searchMovie(newValue);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }));
     }
 
     public void createMovieScene() throws IOException
