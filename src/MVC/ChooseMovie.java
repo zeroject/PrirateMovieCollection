@@ -56,7 +56,7 @@ public class ChooseMovie implements Initializable
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure, you want to delete?", ButtonType.YES, ButtonType.CANCEL);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.YES){
-                //TODO
+                movieModel.deleteMovie(tableView.getSelectionModel().getSelectedItem());
             }
         } else {
             Parent root = FXMLLoader.load(getClass().getResource("View/UpdateMovie.fxml"));

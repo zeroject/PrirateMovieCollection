@@ -34,7 +34,7 @@ public class MovieModel
     public void createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLException {
         movieManager.createMovie(title, movieRating, url, imgUrl, lastView);
     }
-    public void deleteSong(Movie movie){
+    public void deleteMovie(Movie movie){
         movieManager.deleteMovie(movie);
     }
 
