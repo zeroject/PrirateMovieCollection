@@ -22,24 +22,23 @@ public class MovieModel
         movieList = FXCollections.observableArrayList();
     }
 
-   public ObservableList<Movie> listToObservableList() throws SQLException {
-        List<Movie> tempMovieList;
-        tempMovieList = this.movieManager.getAllMovies();
-        for(Movie movie : tempMovieList){
-            movieList.add(movie);
-        }
-        return movieList;
-    }
+   public ObservableList<Movie> getObservableMovie() throws SQLException
+   {
+       movieList.clear();
+       movieList.addAll(movieManager.getAllMovies());
+       return movieList;
+   }
 
     public void createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLException {
         movieManager.createMovie(title, movieRating, url, imgUrl, lastView);
     }
-    public void deleteSong(Movie movie){
+    public void deleteMovie(Movie movie){
         movieManager.deleteMovie(movie);
     }
 
     public void searchMovie(String query) throws SQLException {
-        List<Movie> searchResults = movieManager.searchMovies(query);
+        List<Movie> allMovies = movieManager.getAllMovies();
+        List<Movie> searchResults = movieManager.searchMovies(query, allMovies);
         movieList.clear();
         movieList.addAll(searchResults);
     }

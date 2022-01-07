@@ -20,7 +20,7 @@
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#createMovieScene" text="New Movie" />
                         <MenuItem mnemonicParsing="false" onAction="#chooseMovieScene" text="Update Movie" />
-                        <MenuItem mnemonicParsing="false" onAction="#chooseMovieScene" text="Delete Movie" />
+                        <MenuItem mnemonicParsing="false" onAction="#chooseMovieSceneDEL" text="Delete Movie" />
                     </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="Help">
