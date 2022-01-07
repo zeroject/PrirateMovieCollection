@@ -44,7 +44,7 @@ public class ChooseMovie implements Initializable
         column.setCellValueFactory(new PropertyValueFactory<MovieManager, String>("Title"));
         try
         {
-            tableView.setItems(movieModel.listToObservableList());
+            tableView.setItems(movieModel.getObservableMovie());
         } catch (Exception e){
             e.printStackTrace();
         }
