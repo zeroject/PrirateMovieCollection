@@ -65,11 +65,7 @@ public class MoviePlayer implements Initializable
 
     public void setMediaWindow()
     {
-<<<<<<< Updated upstream
-        //mp4Player.setViewport();
-=======
         mp4Player.setViewport(get2D());
->>>>>>> Stashed changes
     }
 
     public Rectangle2D get2D(){
