@@ -47,32 +47,31 @@ public class MovieDAO
         return movies;
     }
 
-    public Movie createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLServerException {
-        int newestID = -1;
+    public Movie createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLException {
+        try (Connection conn = connection.getConnection()){
+            String sql = "INSERT INTO Movies(MovieTitle, MovieRating, MovieFile, MovieImageFile, MovieLastView) values (?,?,?,?,?);";
 
-        String sql = "INSERT INTO Movies(MovieTitle, MovieRating, MovieFile, MovieImageFile, MovieLastView) values (?,?,?,?,?);";
-        Connection conn = connection.getConnection();
+            try(PreparedStatement preparedStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+                preparedStatement.setString(1, title);
+                preparedStatement.setFloat(2, movieRating);
+                preparedStatement.setString(3, url);
+                preparedStatement.setString(4, imgUrl);
+                preparedStatement.setString(5, lastView);
+                preparedStatement.executeUpdate();
+                ResultSet rs = preparedStatement.getGeneratedKeys();
 
-        try(PreparedStatement preparedStatement = conn.prepareStatement(sql)){
-            preparedStatement.setString(1, title);
-            preparedStatement.setFloat(2, movieRating);
-            preparedStatement.setString(3, url);
-            preparedStatement.setString(4, imgUrl);
-            preparedStatement.setString(5, lastView);
-            preparedStatement.addBatch();
-            preparedStatement.executeBatch();
+                int id = 0;
+                if(rs.next()){
+                    id = rs.getInt(1);
+                }
 
-            String sql2 = "SELECT TOP(1) * FROM Movies ORDER by ID desc";
-            PreparedStatement preparedStmt = conn.prepareStatement(sql2);
-            ResultSet rs = preparedStmt.executeQuery();
-            while (rs.next()) {
-                newestID = rs.getInt("MovieId");
+                Movie movie = new Movie(id, title, movieRating, url, imgUrl, lastView);
+                return movie;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
-            preparedStatement.executeBatch();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
-        return new Movie(newestID, title, movieRating, url, imgUrl, lastView);
+        return null;
     }
     public void updateMovie(Movie movie){
         //TODO Implement

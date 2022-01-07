@@ -5,6 +5,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -22,7 +23,7 @@ public class CreateMovie
         movieModel = new MovieModel();
     }
 
-    public void createMovie() throws SQLServerException {
+    public void createMovie() throws SQLException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime systemDate = LocalDateTime.now();
         System.out.println(dtf.format(systemDate));
