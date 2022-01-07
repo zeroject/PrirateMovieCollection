@@ -33,17 +33,11 @@ public class MovieManager
     public List<Movie> getAllMovies() throws SQLException {
         return movieDAO.getAllMovies();
     }
-    public List<Movie> searchMovies(String query) throws SQLException {
-        List<Movie> allMovie = getAllMovies();
-        List<Movie> searchResult = movieSearcher.search(allMovie, query);
-        return searchResult;
+    public List<Movie> searchMovies(String query, List<Movie> movieList) throws SQLException {
+        return movieSearcher.search(movieList, query);
     }
     public String updateMovieImage(Movie movie){
         return movie.getUrlImg();
     }
 
-    public List<Movie> getSearchMovies (List<Movie> movies, String keyword)
-    {
-        return movieSearcher.search(movies, keyword);
-    }
 }
