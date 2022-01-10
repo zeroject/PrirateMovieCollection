@@ -106,10 +106,12 @@ public class MainWindow implements Initializable
     }
     public void movieScene() throws IOException
     {
+        DeletingModel.movieURL = movieTableView.getSelectionModel().getSelectedItem().getUrl();
         Parent root = FXMLLoader.load(getClass().getResource("View/MovieScene.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
         System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
     }
