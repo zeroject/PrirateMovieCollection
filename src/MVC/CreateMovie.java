@@ -57,13 +57,20 @@ public class CreateMovie
     public void chooseMovieFile(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Music Files", "*.mp4", "*.mpeg4"));
-        fileChooser.setInitialDirectory(new File("Movies/" ));
+        fileChooser.setInitialDirectory(new File("Movies/"));
         File file = fileChooser.showOpenDialog(null);
 
 
         if (file != null){
             textFieldUrl.setText("Movies\\" + file.getName());
-            textFieldTitle.setText(file.getName());
+
+            String fileName = file.getName();
+            String[] filenames = {".mp4", ".mpeg4"};
+            for (String words: filenames){
+
+                fileName = fileName.replace(words, "".repeat(words.length()));
+            }
+            textFieldTitle.setText(fileName);
         }
     }
 }
