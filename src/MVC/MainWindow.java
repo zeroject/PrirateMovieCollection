@@ -13,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -33,6 +35,8 @@ public class MainWindow implements Initializable
     @FXML
     private TableColumn movieColumn;
     @FXML
+    private TableColumn imageColumn;
+    @FXML
     private TextField searchTextField;
     @FXML
     private ComboBox comboBox;
@@ -40,6 +44,7 @@ public class MainWindow implements Initializable
 
     public MainWindow() throws IOException{
         movieColumn = new TableColumn<MovieManager, String>();
+        imageColumn = new TableColumn<MovieManager, ImageView>();
         movieTableView = new TableView<>();
         movieModel = new MovieModel();
     }
@@ -49,6 +54,7 @@ public class MainWindow implements Initializable
     @Override public void initialize(URL location, ResourceBundle resources)
     {
         movieColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, String>("Title"));
+        imageColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, ImageView>("urlImg"));
         try
         {
             movieTableView.setItems(movieModel.getObservableMovie());
