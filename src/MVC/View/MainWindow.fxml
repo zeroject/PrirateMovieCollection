@@ -28,8 +28,8 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Category">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Create Category" />
-                              <MenuItem mnemonicParsing="false" text="Delete Category" />
+                            <MenuItem mnemonicParsing="false" onAction="#createCategoryScene" text="Create Category" />
+                              <MenuItem mnemonicParsing="false" onAction="#deleteCategory" text="Delete Category" />
                           </items>
                         </Menu>
                     </items>

@@ -1,5 +1,6 @@
 package MVC.Model;
 
+import BE.Category;
 import BLL.CategoryManager;
 
 import java.io.IOException;
@@ -15,6 +16,10 @@ public class CategoryModel {
 
     public void createCategory(String name) throws SQLException {
         categoryManager.createCategory(name);
+    }
+
+    public void deleteCategory(Category category){
+
     }
 
 }
