@@ -19,7 +19,7 @@ public class CategoryModel {
     }
 
     public void deleteCategory(Category category){
-
+        categoryManager.deleteCategory(category);
     }
 
 }
