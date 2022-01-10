@@ -64,11 +64,11 @@ public class CategoryDAO {
         return null;
     }
 
-    public void deleteCategory(Movie movie){
+    public void deleteCategory(Category category){
         try(Connection conn = connection.getConnection()){
             String sql = "DELETE FROM Categories WHERE CategoryId =?;";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, movie.getId());
+            preparedStatement.setInt(1, category.getId());
             if(preparedStatement.executeUpdate() != 1){
                 throw new Exception("Could not delete Category");
             }
