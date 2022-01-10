@@ -81,6 +81,15 @@ public class MainWindow implements Initializable
         stage.show();
         System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
     }
+    public void movieScene() throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("View/MovieScene.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
+    }
     public void chooseMovieScene() throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("View/Choose Movie.fxml"));
