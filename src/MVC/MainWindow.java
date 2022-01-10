@@ -78,6 +78,11 @@ public class MainWindow implements Initializable
         comboBox.setItems(categoryModel.getObservableCategory());
     }
 
+    public void refreshTable() throws SQLException {
+        movieTableView.getItems().clear();
+        movieTableView.setItems(movieModel.getObservableMovie());
+    }
+
     public void createCategoryScene() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("View/Create Category.fxml"));
         Stage stage = new Stage();
