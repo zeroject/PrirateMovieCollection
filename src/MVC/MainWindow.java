@@ -1,7 +1,9 @@
 package MVC;
 
+import BE.Category;
 import BE.Movie;
 import BLL.MovieManager;
+import MVC.Model.CategoryModel;
 import MVC.Model.DeletingModel;
 import MVC.Model.MovieModel;
 import javafx.application.Platform;
@@ -30,6 +32,7 @@ import java.util.ResourceBundle;
 public class MainWindow implements Initializable
 {
     MovieModel movieModel;
+    CategoryModel categoryModel;
 
     @FXML
     private TableView<Movie> movieTableView;
@@ -40,7 +43,7 @@ public class MainWindow implements Initializable
     @FXML
     private TextField searchTextField;
     @FXML
-    private ComboBox comboBox;
+    private ComboBox<Category> comboBox;
 
 
     public MainWindow() throws IOException{
@@ -48,6 +51,7 @@ public class MainWindow implements Initializable
         imageColumn = new TableColumn<MovieManager, ImageView>();
         movieTableView = new TableView<>();
         movieModel = new MovieModel();
+        categoryModel = new CategoryModel();
     }
 
 
@@ -70,6 +74,25 @@ public class MainWindow implements Initializable
                 throwables.printStackTrace();
             }
         }));
+
+        comboBox.setItems(categoryModel.getObservableCategory());
+    }
+
+    public void refreshTable() throws SQLException {
+        movieTableView.getItems().clear();
+        movieTableView.setItems(movieModel.getObservableMovie());
+    }
+
+    public void createCategoryScene() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("View/Create Category.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void deleteCategory(){
+        categoryModel.deleteCategory(comboBox.getSelectionModel().getSelectedItem());
+        comboBox.getItems().remove(comboBox.getSelectionModel().getSelectedItem());
     }
 
     public void createMovieScene() throws IOException
