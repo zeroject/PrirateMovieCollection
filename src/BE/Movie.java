@@ -1,6 +1,6 @@
 package BE;
 
-import java.sql.Date;
+import java.util.List;
 
 public class Movie {
     private int id;
@@ -8,12 +8,15 @@ public class Movie {
     private float movieRating;
     private String url;
     private String urlImg;
+    private List<Category> categoryList;
+
     public Movie(int id, String title, float movieRating, String url, String urlImg, String lastView){
         this.id = id;
         this.title = title;
         this.movieRating = movieRating;
         this.url = url;
         this.urlImg = urlImg;
+        this.categoryList = categoryList;
     }
 
     public int getId(){
