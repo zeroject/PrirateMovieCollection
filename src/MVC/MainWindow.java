@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
@@ -101,7 +102,29 @@ public class MainWindow implements Initializable
         DeletingModel.isDELETING = true;
     }
 
-
+    public void createImagesForEachMovie() throws SQLException
+    {
+        VBox temp = new VBox();
+        Scene scene = new Scene(temp);
+        double xPos = 50;
+        for (Movie movie : movieModel.getObservableMovie()){
+            System.out.println(movie.getTitle());
+            Image image = new Image("C:\\Users\\caspe\\Desktop\\Skole\\Eksammen\\PrirateMovieCollection\\Images\\Original-image-512x512-pixels_Q640.jpg");
+            ImageView imageView = new ImageView(image);
+            VBox vBox = new VBox(imageView);
+            imageView.setImage(image);
+            imageView.setX(xPos);
+            imageView.setY(xPos);
+            imageView.setFitHeight(xPos);
+            imageView.setFitWidth(xPos);
+            imageView.setPreserveRatio(true);
+            xPos = xPos + 10;
+            scene.setRoot(vBox);
+        }
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
 

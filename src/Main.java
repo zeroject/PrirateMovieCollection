@@ -14,7 +14,7 @@ public class Main extends Application {
         primaryStage.setTitle("Pirate Movies");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
     }
 
     public static void main(String[] args) {
