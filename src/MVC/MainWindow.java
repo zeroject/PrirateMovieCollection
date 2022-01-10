@@ -74,6 +74,8 @@ public class MainWindow implements Initializable
                 throwables.printStackTrace();
             }
         }));
+
+        comboBox.setItems(categoryModel.getObservableCategory());
     }
 
     public void createCategoryScene() throws IOException {
@@ -85,6 +87,7 @@ public class MainWindow implements Initializable
     }
     public void deleteCategory(){
         categoryModel.deleteCategory(comboBox.getSelectionModel().getSelectedItem());
+        comboBox.getItems().remove(comboBox.getSelectionModel().getSelectedItem());
     }
 
     public void createMovieScene() throws IOException
