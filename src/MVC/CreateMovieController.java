@@ -44,7 +44,7 @@ public class CreateMovieController implements Initializable {
 
     private List<Category> categoryList;
 
-public class CreateMovieController
+public class CreateMovieController implements Initializable
 {
 
     public TextField textFieldTitle;
