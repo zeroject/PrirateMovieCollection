@@ -116,7 +116,7 @@ public class CreateMovieController implements Initializable {
         File file = fileChooser.showOpenDialog(null);
 
         if (file != null){
-            textFieldImgUrl.setText("Image\\" + file.getName());
+            textFieldImgUrl.setText("Images\\" + file.getName());
 
         }
     }
