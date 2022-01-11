@@ -90,12 +90,15 @@ public class CategoryDAO {
 
     public void deleteCategory(Category category){
         try(Connection conn = connection.getConnection()){
-            String sql = "DELETE FROM Categories WHERE CategoryId =?;";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, category.getId());
-            if(preparedStatement.executeUpdate() != 1){
-                throw new Exception("Could not delete Category");
-            }
+            String sql1 = "DELETE FROM CatMovie WHERE CategoryId =?;";
+            String sql2 = "DELETE FROM Categories WHERE CategoryId =?;";
+            PreparedStatement preparedStatement1 = conn.prepareStatement(sql1);
+            preparedStatement1.setInt(1, category.getId());
+            preparedStatement1.execute();
+
+            PreparedStatement preparedStatement2 = conn.prepareStatement(sql2);
+            preparedStatement2.setInt(1, category.getId());
+            preparedStatement2.execute();
         } catch (Exception throwables) {
             throwables.printStackTrace();
         }
