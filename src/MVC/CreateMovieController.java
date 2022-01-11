@@ -9,11 +9,8 @@ import javafx.collections.MapChangeListener;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
@@ -25,7 +22,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CreateMovieController implements Initializable {
@@ -53,6 +52,7 @@ public class CreateMovieController implements Initializable {
     public CreateMovieController() throws IOException {
         movieModel = new MovieModel();
         categoryModel = new CategoryModel();
+        categoryList = new ArrayList<>();
     }
 
     @Override
@@ -65,15 +65,20 @@ public class CreateMovieController implements Initializable {
         LocalDateTime systemDate = LocalDateTime.now();
         Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), dtf.format(systemDate));
 
-
-
+        for (Category category : categoryList) {
+            categoryModel.insertCategoryIntoMovie(movie.getId(), category.getId());
+        }
         Stage stage = (Stage) but.getScene().getWindow();
         stage.close();
     }
 
     public void addCategoryToMovie(){
-        categoryList.add(categoryCombobox.getSelectionModel().getSelectedItem());
-
+        if (!categoryList.contains(categoryCombobox.getSelectionModel().getSelectedItem())) {
+            categoryList.add(categoryCombobox.getSelectionModel().getSelectedItem());
+        }else{
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie already contains this category", ButtonType.OK);
+            alert.showAndWait();
+        }
         textFieldCategory.setText(categoryList.toString());
     }
 

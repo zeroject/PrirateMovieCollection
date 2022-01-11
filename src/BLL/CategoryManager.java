@@ -18,6 +18,10 @@ public class CategoryManager {
         return categoryDAO.getAllCategories();
     }
 
+    public void insertCategoryIntoMovie(int movieId, int categoryId){
+        categoryDAO.addCategoryToMovie(movieId, categoryId);
+    }
+
     public void createCategory(String name) throws SQLException {
         categoryDAO.createCategory(name);
     }
