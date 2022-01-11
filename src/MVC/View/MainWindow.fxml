@@ -56,7 +56,7 @@
             </TableView>
             <TextField fx:id="searchTextField" layoutX="389.0" layoutY="24.0" prefHeight="25.0" prefWidth="211.0" promptText="Movie Titel, Category, Genre" />
             <ComboBox fx:id="comboBox" layoutX="185.0" layoutY="24.0" prefHeight="25.0" prefWidth="204.0" promptText="Category" />
-            <Button layoutX="59.0" layoutY="24.0" mnemonicParsing="false" onAction="#movieScene" text="Button" />
+            <Button layoutY="24.0" mnemonicParsing="false" onAction="#movieScene" text="Play Movie" />
          </children>
       </AnchorPane>
    </children>
