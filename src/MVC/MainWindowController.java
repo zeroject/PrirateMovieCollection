@@ -3,6 +3,7 @@ package MVC;
 import BE.Category;
 import BE.Movie;
 import BLL.MovieManager;
+import BLL.util.DEBUGReaderThread;
 import MVC.Model.CategoryModel;
 import MVC.Model.DeletingModel;
 import MVC.Model.MovieModel;
@@ -18,7 +19,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -29,7 +29,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class MainWindow implements Initializable
+public class MainWindowController implements Initializable
 {
     MovieModel movieModel;
     CategoryModel categoryModel;
@@ -46,7 +46,7 @@ public class MainWindow implements Initializable
     private ComboBox<Category> comboBox;
 
 
-    public MainWindow() throws IOException{
+    public MainWindowController() throws IOException{
         movieColumn = new TableColumn<MovieManager, String>();
         imageColumn = new TableColumn<MovieManager, ImageView>();
         movieTableView = new TableView<>();

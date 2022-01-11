@@ -16,7 +16,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MovieScene implements Initializable
+public class MovieSceneController implements Initializable
 {
     @FXML
     public MediaView movieView;
@@ -30,8 +30,7 @@ public class MovieScene implements Initializable
 
     @Override public void initialize(URL location, ResourceBundle resources)
     {
-        //file = new File(DeletingModel.movieURL);
-        file = new File("C:\\Users\\caspe\\Pictures\\Camera Roll\\WIN_20220110_10_05_59_Pro.mp4");
+        file = new File(DeletingModel.movieURL);
         media = new Media(file.toURI().toString());
         mp = new MediaPlayer(media);
         movieView.setMediaPlayer(mp);

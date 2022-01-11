@@ -18,7 +18,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class ChooseMovie implements Initializable
+public class ChooseMovieController implements Initializable
 {
     MovieModel movieModel = new MovieModel();
     @FXML
@@ -31,7 +31,7 @@ public class ChooseMovie implements Initializable
     private DeletingModel deletingModel = new DeletingModel();
     private boolean isdelting;
 
-    public ChooseMovie() throws IOException
+    public ChooseMovieController() throws IOException
     {
         column = new TableColumn<MovieManager, String>();
         tableView = new TableView<>();
