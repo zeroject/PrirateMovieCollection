@@ -44,26 +44,10 @@ public class CreateMovieController implements Initializable {
     private TextField textFieldCategory;
     @FXML
     private ComboBox<Category> categoryCombobox;
-
-    private List<Category> categoryList;
-
-<<<<<<< Updated upstream
-public class CreateMovieController implements Initializable
-{
-
-    @FXML
-    private TextField textFieldTitle;
-    @FXML
-    private Slider sliderRating;
-    @FXML
-    private TextField textFieldUrl;
-    @FXML
-    private TextField textFieldImgUrl;
     @FXML
     private Button but;
-=======
-    public Button but;
->>>>>>> Stashed changes
+
+    private List<Category> categoryList;
 
     private MovieModel movieModel;
     private CategoryModel categoryModel;
