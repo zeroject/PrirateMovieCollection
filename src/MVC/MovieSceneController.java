@@ -1,11 +1,10 @@
 package MVC;
 
-import MVC.Model.DeletingModel;
+import MVC.Model.ParseModel;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -30,7 +29,7 @@ public class MovieSceneController implements Initializable
 
     @Override public void initialize(URL location, ResourceBundle resources)
     {
-        file = new File(DeletingModel.movieURL);
+        file = new File(ParseModel.movieURL);
         media = new Media(file.toURI().toString());
         mp = new MediaPlayer(media);
         movieView.setMediaPlayer(mp);

@@ -9,11 +9,14 @@ import javafx.collections.MapChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +44,15 @@ public class CreateMovieController implements Initializable {
 
     private List<Category> categoryList;
 
+public class CreateMovieController
+{
+
+    public TextField textFieldTitle;
+    public Slider sliderRating;
+    public TextField textFieldUrl;
+    public TextField textFieldImgUrl;
+    public Button but;
+
     private MovieModel movieModel;
     private CategoryModel categoryModel;
 
@@ -57,8 +69,9 @@ public class CreateMovieController implements Initializable {
     public void createMovie() throws SQLException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime systemDate = LocalDateTime.now();
-
         Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), dtf.format(systemDate));
+        Stage stage = (Stage) but.getScene().getWindow();
+        stage.close();
 
         
     }
