@@ -1,5 +1,6 @@
 package MVC;
 
+import BE.Movie;
 import MVC.Model.MovieModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.MapChangeListener;
@@ -33,7 +34,9 @@ public class CreateMovie
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime systemDate = LocalDateTime.now();
 
-        movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), dtf.format(systemDate));
+        Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), dtf.format(systemDate));
+
+        System.out.println(movie.getTitle() + movie.getId());
     }
 
     /**
@@ -42,7 +45,7 @@ public class CreateMovie
     public void chooseImageFile(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
-        fileChooser.setInitialDirectory(new File("Image/" ));
+        fileChooser.setInitialDirectory(new File("Images/" ));
         File file = fileChooser.showOpenDialog(null);
 
         if (file != null){
@@ -56,7 +59,7 @@ public class CreateMovie
      */
     public void chooseMovieFile(){
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Music Files", "*.mp4", "*.mpeg4"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.mp4", "*.mpeg4"));
         fileChooser.setInitialDirectory(new File("Movies/"));
         File file = fileChooser.showOpenDialog(null);
 

@@ -2,14 +2,11 @@ package MVC.Model;
 
 import BE.Movie;
 import BLL.MovieManager;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MovieModel
@@ -29,8 +26,8 @@ public class MovieModel
        return movieList;
    }
 
-    public void createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLException {
-        movieManager.createMovie(title, movieRating, url, imgUrl, lastView);
+    public Movie createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLException {
+        return movieManager.createMovie(title, movieRating, url, imgUrl, lastView);
     }
     public void deleteMovie(Movie movie){
         movieManager.deleteMovie(movie);

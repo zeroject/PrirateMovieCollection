@@ -3,10 +3,8 @@ package BLL;
 import BE.Movie;
 import BLL.util.MovieSearcher;
 import DAL.MovieDAO;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -21,8 +19,8 @@ public class MovieManager
         movieDAO = new MovieDAO();
     }
 
-    public void createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLException {
-        movieDAO.createMovie(title,movieRating,url,imgUrl, lastView);
+    public Movie createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLException {
+        return movieDAO.createMovie(title,movieRating,url,imgUrl, lastView);
     }
     public void updateMovie(Movie movie){
         movieDAO.updateMovie(movie);
