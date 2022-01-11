@@ -16,7 +16,6 @@ public class Movie {
         this.movieRating = movieRating;
         this.url = url;
         this.urlImg = urlImg;
-        this.categoryList = categoryList;
     }
 
     public int getId(){

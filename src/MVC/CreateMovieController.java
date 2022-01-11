@@ -1,9 +1,14 @@
 package MVC;
 
+import BE.Category;
 import BE.Movie;
+import MVC.Model.CategoryModel;
 import MVC.Model.MovieModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.MapChangeListener;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
@@ -12,22 +17,41 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class CreateMovieController
-{
+public class CreateMovieController implements Initializable {
 
-    public TextField textFieldTitle;
-    public Slider sliderRating;
-    public TextField textFieldUrl;
-    public TextField textFieldImgUrl;
+    @FXML
+    private TextField textFieldTitle;
+    @FXML
+    private Slider sliderRating;
+    @FXML
+    private TextField textFieldUrl;
+    @FXML
+    private TextField textFieldImgUrl;
+    @FXML
+    private TextField textFieldCategory;
+    @FXML
+    private ComboBox<Category> categoryCombobox;
+
+    private List<Category> categoryList;
 
     private MovieModel movieModel;
+    private CategoryModel categoryModel;
 
     public CreateMovieController() throws IOException {
         movieModel = new MovieModel();
+        categoryModel = new CategoryModel();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        categoryCombobox.setItems(categoryModel.getObservableCategory());
     }
 
     public void createMovie() throws SQLException {
@@ -36,8 +60,13 @@ public class CreateMovieController
 
         Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), dtf.format(systemDate));
 
-        System.out.println(movie.getTitle() + movie.getId());
+        
     }
+
+    public void addCategoryToMovie(){
+        categoryList.add(categoryCombobox.getSelectionModel().getSelectedItem());
+    }
+
 
     /**
      * Opens a file explorer to choose an image (*.png, *.jpg, *.jpeg)
