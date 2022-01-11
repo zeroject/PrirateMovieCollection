@@ -1,8 +1,6 @@
 package DAL;
 
 import BE.Category;
-import BE.Movie;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.*;
@@ -11,7 +9,7 @@ import java.util.List;
 
 public class CategoryDAO {
 
-    private DatabaseDAO connection;
+    private final DatabaseDAO connection;
 
     public CategoryDAO() throws IOException {
         connection = new DatabaseDAO();
@@ -70,7 +68,7 @@ public class CategoryDAO {
         return categoriesInMovie;
     }
 
-    public Category createCategory(String name) throws SQLException {
+    public void createCategory(String name) throws SQLException {
         try (Connection conn = connection.getConnection()){
             String sql = "INSERT INTO Categories(CategoryName) values (?);";
 
@@ -83,14 +81,11 @@ public class CategoryDAO {
                 if(rs.next()){
                     id = rs.getInt(1);
                 }
-
-                Category category = new Category(id, name);
-                return category;
+                new Category(id, name);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }
-        return null;
     }
 
     public void deleteCategory(Category category){
@@ -114,8 +109,6 @@ public class CategoryDAO {
             preparedStatement.setInt(1, movieId);
             preparedStatement.setInt(2, categoryId);
             preparedStatement.execute();
-        } catch (SQLServerException ex) {
-            System.out.println(ex);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
