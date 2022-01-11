@@ -3,11 +3,14 @@ package MVC;
 import MVC.Model.MovieModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.MapChangeListener;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +25,7 @@ public class CreateMovieController
     public Slider sliderRating;
     public TextField textFieldUrl;
     public TextField textFieldImgUrl;
+    public Button but;
 
     private MovieModel movieModel;
 
@@ -34,6 +38,9 @@ public class CreateMovieController
         LocalDateTime systemDate = LocalDateTime.now();
 
         movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), dtf.format(systemDate));
+        Stage stage = (Stage) but.getScene().getWindow();
+        stage.close();
+        
     }
 
     /**

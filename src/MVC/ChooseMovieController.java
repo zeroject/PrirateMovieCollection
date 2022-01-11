@@ -2,7 +2,7 @@ package MVC;
 
 import BE.Movie;
 import BLL.MovieManager;
-import MVC.Model.DeletingModel;
+import MVC.Model.ParseModel;
 import MVC.Model.MovieModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +28,7 @@ public class ChooseMovieController implements Initializable
     @FXML
     private TextField searchTextField;
 
-    private DeletingModel deletingModel = new DeletingModel();
+    private ParseModel parseModel = new ParseModel();
     private boolean isdelting;
 
     public ChooseMovieController() throws IOException
@@ -52,7 +52,7 @@ public class ChooseMovieController implements Initializable
 
     public void movieSelected() throws IOException
     {
-        if (DeletingModel.isDELETING == true){
+        if (ParseModel.isDELETING == true){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure, you want to delete?", ButtonType.YES, ButtonType.CANCEL);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.YES){

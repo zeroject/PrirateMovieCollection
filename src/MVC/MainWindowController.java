@@ -5,7 +5,7 @@ import BE.Movie;
 import BLL.MovieManager;
 import BLL.util.DEBUGReaderThread;
 import MVC.Model.CategoryModel;
-import MVC.Model.DeletingModel;
+import MVC.Model.ParseModel;
 import MVC.Model.MovieModel;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -78,9 +78,14 @@ public class MainWindowController implements Initializable
         comboBox.setItems(categoryModel.getObservableCategory());
     }
 
-    public void refreshTable() throws SQLException {
-        movieTableView.getItems().clear();
-        movieTableView.setItems(movieModel.getObservableMovie());
+    public void refreshTable() {
+        try
+        {
+            movieTableView.getItems().clear();
+            movieTableView.setItems(movieModel.getObservableMovie());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void createCategoryScene() throws IOException {
@@ -104,9 +109,10 @@ public class MainWindowController implements Initializable
         stage.show();
         System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
     }
+
     public void movieScene() throws IOException
     {
-        DeletingModel.movieURL = movieTableView.getSelectionModel().getSelectedItem().getUrl();
+        ParseModel.movieURL = movieTableView.getSelectionModel().getSelectedItem().getUrl();
         Parent root = FXMLLoader.load(getClass().getResource("View/MovieScene.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
@@ -123,7 +129,7 @@ public class MainWindowController implements Initializable
         stage.setScene(scene);
         stage.show();
         System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
-        DeletingModel.isDELETING = false;
+        ParseModel.isDELETING = false;
     }
     public void chooseMovieSceneDEL() throws IOException
     {
@@ -133,7 +139,7 @@ public class MainWindowController implements Initializable
         stage.setScene(scene);
         stage.show();
         System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
-        DeletingModel.isDELETING = true;
+        ParseModel.isDELETING = true;
     }
 
     public void createImagesForEachMovie() throws SQLException

@@ -21,7 +21,7 @@ public class DEBUGReaderThread implements Runnable
 
     private TextArea txtArea;
 
-    DEBUGReaderThread(PipedInputStream pinInput1, PipedInputStream pinInput2, Thread errorThrower1, Thread reader11, Thread reader22, boolean newflag, TextArea txtArea1)
+    public DEBUGReaderThread(PipedInputStream pinInput1, PipedInputStream pinInput2, Thread errorThrower1, Thread reader11, Thread reader22, boolean newflag, TextArea txtArea1)
     {
         pipeIn = pinInput1;
         pipeIn2 = pinInput2;
