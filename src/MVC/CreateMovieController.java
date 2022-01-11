@@ -63,23 +63,46 @@ public class CreateMovieController implements Initializable {
     public void createMovie() throws SQLException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime systemDate = LocalDateTime.now();
-        Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), dtf.format(systemDate));
-
-        for (Category category : categoryList) {
-            categoryModel.insertCategoryIntoMovie(movie.getId(), category.getId());
+        // Beginning of Error Handling
+        if (textFieldTitle.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing a title", ButtonType.OK);
+            alert.showAndWait();
+            
+        }else if (textFieldUrl.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing a movie", ButtonType.OK);
+            alert.showAndWait();
+            
+        }else if (textFieldImgUrl.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing an image", ButtonType.OK);
+            alert.showAndWait();
+            
+        }else if (textFieldCategory.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing one or more categories", ButtonType.OK);
+            alert.showAndWait();
+            
         }
-        Stage stage = (Stage) but.getScene().getWindow();
-        stage.close();
+        // End of Error Handling
+        else{
+            Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), dtf.format(systemDate));
+
+            for (Category category : categoryList) {
+                categoryModel.insertCategoryIntoMovie(movie.getId(), category.getId());
+            }
+
+            Stage stage = (Stage) but.getScene().getWindow();
+            stage.close();
+        }
     }
 
     public void addCategoryToMovie(){
-        if (!categoryList.contains(categoryCombobox.getSelectionModel().getSelectedItem())) {
+        if (!categoryList.contains(categoryCombobox.getSelectionModel().getSelectedItem()) && categoryCombobox.getSelectionModel().getSelectedItem() != null) {
             categoryList.add(categoryCombobox.getSelectionModel().getSelectedItem());
-        }else{
+            textFieldCategory.setText(categoryList.toString());
+
+        }else if (!categoryList.contains(categoryCombobox.getSelectionModel().getSelectedItem()) && categoryCombobox.getSelectionModel().getSelectedItem() != null){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie already contains this category", ButtonType.OK);
             alert.showAndWait();
         }
-        textFieldCategory.setText(categoryList.toString());
     }
 
 
