@@ -7,8 +7,11 @@ import MVC.Model.MovieModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.MapChangeListener;
 import javafx.fxml.FXML;
+<<<<<<< Updated upstream
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+=======
+>>>>>>> Stashed changes
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
@@ -47,11 +50,16 @@ public class CreateMovieController implements Initializable {
 public class CreateMovieController implements Initializable
 {
 
-    public TextField textFieldTitle;
-    public Slider sliderRating;
-    public TextField textFieldUrl;
-    public TextField textFieldImgUrl;
-    public Button but;
+    @FXML
+    private TextField textFieldTitle;
+    @FXML
+    private Slider sliderRating;
+    @FXML
+    private TextField textFieldUrl;
+    @FXML
+    private TextField textFieldImgUrl;
+    @FXML
+    private Button but;
 
     private MovieModel movieModel;
     private CategoryModel categoryModel;

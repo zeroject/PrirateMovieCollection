@@ -12,8 +12,8 @@ public class CreateCategoryController
 
     @FXML
     private TextField textFieldName;
-    
-    CategoryModel categoryModel;
+
+    private CategoryModel categoryModel;
 
     public CreateCategoryController() throws IOException {
         categoryModel = new CategoryModel();
