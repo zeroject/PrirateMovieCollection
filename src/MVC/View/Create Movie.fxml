@@ -16,15 +16,10 @@
          <center>
             <AnchorPane prefHeight="400.0" prefWidth="108.0" BorderPane.alignment="CENTER">
                <children>
-
-                  <Button layoutX="17.0" layoutY="361.0" mnemonicParsing="false" onAction="#createMovie" text="Create" />
-                  <Button layoutX="14.0" layoutY="143.0" mnemonicParsing="false" onAction="#chooseMovieFile" text="Choose" />
-                  <Button layoutX="14.0" layoutY="200.0" mnemonicParsing="false" onAction="#chooseImageFile" text="Choose" />
                   <Button layoutX="15.0" layoutY="267.0" mnemonicParsing="false" onAction="#addCategoryToMovie" text="Add Category" />
                   <Button fx:id="but" layoutX="28.0" layoutY="361.0" mnemonicParsing="false" onAction="#createMovie" text="Create" />
                   <Button layoutX="14.0" layoutY="168.0" mnemonicParsing="false" onAction="#chooseMovieFile" text="Choose" />
                   <Button layoutX="14.0" layoutY="225.0" mnemonicParsing="false" onAction="#chooseImageFile" text="Choose" />
-
                </children></AnchorPane>
          </center>
          <left>

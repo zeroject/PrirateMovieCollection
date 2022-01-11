@@ -47,6 +47,7 @@ public class CreateMovieController implements Initializable {
 
     private List<Category> categoryList;
 
+<<<<<<< Updated upstream
 public class CreateMovieController implements Initializable
 {
 
@@ -60,6 +61,9 @@ public class CreateMovieController implements Initializable
     private TextField textFieldImgUrl;
     @FXML
     private Button but;
+=======
+    public Button but;
+>>>>>>> Stashed changes
 
     private MovieModel movieModel;
     private CategoryModel categoryModel;
@@ -78,14 +82,19 @@ public class CreateMovieController implements Initializable
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime systemDate = LocalDateTime.now();
         Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), dtf.format(systemDate));
+
+
+
         Stage stage = (Stage) but.getScene().getWindow();
         stage.close();
-
-        
     }
 
     public void addCategoryToMovie(){
         categoryList.add(categoryCombobox.getSelectionModel().getSelectedItem());
+
+        if (textFieldCategory.getText().isEmpty()){
+            
+        }
     }
 
 
