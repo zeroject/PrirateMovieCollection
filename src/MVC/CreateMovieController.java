@@ -7,11 +7,9 @@ import MVC.Model.MovieModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.MapChangeListener;
 import javafx.fxml.FXML;
-<<<<<<< Updated upstream
+
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-=======
->>>>>>> Stashed changes
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
@@ -76,9 +74,7 @@ public class CreateMovieController implements Initializable {
     public void addCategoryToMovie(){
         categoryList.add(categoryCombobox.getSelectionModel().getSelectedItem());
 
-        if (textFieldCategory.getText().isEmpty()){
-            
-        }
+        textFieldCategory.setText(categoryList.toString());
     }
 
 
