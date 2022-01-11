@@ -93,12 +93,13 @@ public class MovieDAO
 
     public void deleteMovie(Movie movie){
         try(Connection conn = connection.getConnection()){
-            String sql = "DELETE FROM Movies WHERE MovieId =?;";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, movie.getId());
-            if(preparedStatement.executeUpdate() != 1){
-                throw new Exception("Could not delete Movie");
-            }
+            String sql1 = "DELETE FROM CatMovie WHERE MovieId =?;";
+            String sql2 = "DELETE FROM Movies WHERE MovieId =?;";
+            PreparedStatement preparedStatement1 = conn.prepareStatement(sql2);
+            preparedStatement1.setInt(1, movie.getId());
+
+            PreparedStatement preparedStatement2 = conn.prepareStatement(sql1);
+            preparedStatement2.setInt(1, movie.getId());
         } catch (Exception throwables) {
             throwables.printStackTrace();
         }
