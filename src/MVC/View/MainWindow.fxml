@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.MainWindowController">
    <children>
@@ -48,7 +49,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <TableView fx:id="movieTableView" layoutY="50.0" prefHeight="350.0" prefWidth="600.0">
+            <TableView fx:id="movieTableView" layoutY="266.0" prefHeight="134.0" prefWidth="600.0">
               <columns>
                 <TableColumn fx:id="movieColumn" editable="false" prefWidth="367.0" sortable="false" />
                   <TableColumn fx:id="imageColumn" editable="false" prefWidth="232.0" sortable="false" text="Images" />
@@ -57,6 +58,8 @@
             <TextField fx:id="searchTextField" layoutX="389.0" layoutY="24.0" prefHeight="25.0" prefWidth="211.0" promptText="Movie Titel, Category, Genre" />
             <ComboBox fx:id="comboBox" layoutX="185.0" layoutY="24.0" prefHeight="25.0" prefWidth="204.0" promptText="Category" />
             <Button layoutY="24.0" mnemonicParsing="false" onAction="#movieScene" text="Play Movie" />
+            <Button layoutX="74.0" layoutY="24.0" mnemonicParsing="false" onAction="#createImagesForEachMovie" prefHeight="25.0" prefWidth="111.0" text="Button" />
+            <Pane fx:id="pane" layoutY="49.0" prefHeight="223.0" prefWidth="600.0" />
          </children>
       </AnchorPane>
    </children>
