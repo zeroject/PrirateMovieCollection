@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class CreateMovie
+public class CreateMovieController
 {
 
     public TextField textFieldTitle;
@@ -25,7 +25,7 @@ public class CreateMovie
 
     private MovieModel movieModel;
 
-    public CreateMovie() throws IOException {
+    public CreateMovieController() throws IOException {
         movieModel = new MovieModel();
     }
 

@@ -1,4 +1,4 @@
-package MVC;
+package BLL.util;
 
 import java.io.IOException;
 import java.io.PipedInputStream;

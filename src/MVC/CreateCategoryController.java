@@ -6,12 +6,13 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class CreateCategory {
+public class CreateCategoryController
+{
 
     public TextField textFieldName;
     CategoryModel categoryModel;
 
-    public CreateCategory() throws IOException {
+    public CreateCategoryController() throws IOException {
         categoryModel = new CategoryModel();
     }
 

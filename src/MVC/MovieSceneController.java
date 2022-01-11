@@ -16,7 +16,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MovieScene implements Initializable
+public class MovieSceneController implements Initializable
 {
     @FXML
     public MediaView movieView;
