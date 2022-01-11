@@ -19,6 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -27,6 +29,8 @@ import javafx.stage.WindowEvent;
 import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable
@@ -40,6 +44,8 @@ public class MainWindowController implements Initializable
     private TableColumn movieColumn;
     @FXML
     private TableColumn imageColumn;
+    @FXML
+    private javafx.scene.layout.Pane pane;
     @FXML
     private TextField searchTextField;
     @FXML
@@ -118,6 +124,7 @@ public class MainWindowController implements Initializable
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
+        stage.setFullScreen(true);
         stage.show();
         System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
     }
@@ -144,26 +151,26 @@ public class MainWindowController implements Initializable
 
     public void createImagesForEachMovie() throws SQLException
     {
-        VBox temp = new VBox();
-        Scene scene = new Scene(temp);
-        double xPos = 50;
+        Image image = new Image("C:\\Users\\caspe\\Desktop\\Skole\\Eksammen\\PrirateMovieCollection\\Images\\Original-image-512x512-pixels_Q640.jpg");
+        List<ImageView> imageViewList = new ArrayList<>();
+        double maxXPos = 300;
+        double maxYPos = 0;
+        double xPos = -200;
+        double yPos = -200;
         for (Movie movie : movieModel.getObservableMovie()){
-            System.out.println(movie.getTitle());
-            Image image = new Image("C:\\Users\\caspe\\Desktop\\Skole\\Eksammen\\PrirateMovieCollection\\Images\\Original-image-512x512-pixels_Q640.jpg");
             ImageView imageView = new ImageView(image);
-            VBox vBox = new VBox(imageView);
-            imageView.setImage(image);
-            imageView.setX(xPos);
-            imageView.setY(xPos);
-            imageView.setFitHeight(xPos);
-            imageView.setFitWidth(xPos);
-            imageView.setPreserveRatio(true);
-            xPos = xPos + 10;
-            scene.setRoot(vBox);
+            imageView.setScaleX(0.2);
+            imageView.setScaleY(0.2);
+            if (xPos >= maxXPos){
+                xPos = -200;
+                yPos = yPos + 50;
+            }
+            imageView.setLayoutX(xPos);
+            imageView.setLayoutY(yPos);
+            xPos = xPos + 50;
+            imageViewList.add(imageView);
+            pane.getChildren().add(imageView);
         }
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
     }
 
 
