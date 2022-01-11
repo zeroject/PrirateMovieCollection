@@ -1,7 +1,6 @@
 package DAL;
 
 import BE.Category;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.*;
@@ -110,8 +109,6 @@ public class CategoryDAO {
             preparedStatement.setInt(1, movieId);
             preparedStatement.setInt(2, categoryId);
             preparedStatement.execute();
-        } catch (SQLServerException ex) {
-            System.out.println(ex);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
