@@ -1,13 +1,16 @@
 package MVC;
 
+import BE.Category;
 import BE.Movie;
+import MVC.Model.CategoryModel;
 import MVC.Model.MovieModel;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.MapChangeListener;
+import javafx.fxml.FXML;
+
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
@@ -15,34 +18,70 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class CreateMovieController
-{
+public class CreateMovieController implements Initializable {
 
-    public TextField textFieldTitle;
-    public Slider sliderRating;
-    public TextField textFieldUrl;
-    public TextField textFieldImgUrl;
-    public Button but;
+    @FXML
+    private TextField textFieldTitle;
+    @FXML
+    private Slider sliderRating;
+    @FXML
+    private TextField textFieldUrl;
+    @FXML
+    private TextField textFieldImgUrl;
+    @FXML
+    private TextField textFieldCategory;
+    @FXML
+    private ComboBox<Category> categoryCombobox;
+    @FXML
+    private Button but;
+
+    private List<Category> categoryList;
 
     private MovieModel movieModel;
+    private CategoryModel categoryModel;
 
     public CreateMovieController() throws IOException {
         movieModel = new MovieModel();
+        categoryModel = new CategoryModel();
+        categoryList = new ArrayList<>();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        categoryCombobox.setItems(categoryModel.getObservableCategory());
     }
 
     public void createMovie() throws SQLException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime systemDate = LocalDateTime.now();
         Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), dtf.format(systemDate));
+
+        for (Category category : categoryList) {
+            categoryModel.insertCategoryIntoMovie(movie.getId(), category.getId());
+        }
         Stage stage = (Stage) but.getScene().getWindow();
         stage.close();
-
-        System.out.println(movie.getTitle() + movie.getId());
     }
+
+    public void addCategoryToMovie(){
+        if (!categoryList.contains(categoryCombobox.getSelectionModel().getSelectedItem())) {
+            categoryList.add(categoryCombobox.getSelectionModel().getSelectedItem());
+        }else{
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie already contains this category", ButtonType.OK);
+            alert.showAndWait();
+        }
+        textFieldCategory.setText(categoryList.toString());
+    }
+
 
     /**
      * Opens a file explorer to choose an image (*.png, *.jpg, *.jpeg)

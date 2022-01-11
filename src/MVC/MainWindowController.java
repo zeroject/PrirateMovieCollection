@@ -124,6 +124,7 @@ public class MainWindowController implements Initializable
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
+        stage.setFullScreen(true);
         stage.show();
         System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
     }

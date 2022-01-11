@@ -25,6 +25,10 @@ public class CategoryModel {
         return categoryList;
     }
 
+    public void insertCategoryIntoMovie(int movieId, int categoryId){
+        categoryManager.insertCategoryIntoMovie(movieId, categoryId);
+    }
+
     public void createCategory(String name) throws SQLException {
         categoryManager.createCategory(name);
     }

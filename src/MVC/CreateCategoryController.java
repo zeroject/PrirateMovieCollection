@@ -1,6 +1,7 @@
 package MVC;
 
 import MVC.Model.CategoryModel;
+import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -9,8 +10,10 @@ import java.sql.SQLException;
 public class CreateCategoryController
 {
 
-    public TextField textFieldName;
-    CategoryModel categoryModel;
+    @FXML
+    private TextField textFieldName;
+
+    private CategoryModel categoryModel;
 
     public CreateCategoryController() throws IOException {
         categoryModel = new CategoryModel();

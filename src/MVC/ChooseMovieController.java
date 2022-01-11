@@ -20,7 +20,6 @@ import java.util.ResourceBundle;
 
 public class ChooseMovieController implements Initializable
 {
-    MovieModel movieModel = new MovieModel();
     @FXML
     private TableView<Movie> tableView;
     @FXML
@@ -28,13 +27,13 @@ public class ChooseMovieController implements Initializable
     @FXML
     private TextField searchTextField;
 
-    private ParseModel parseModel = new ParseModel();
-    private boolean isdelting;
+    private MovieModel movieModel;
 
     public ChooseMovieController() throws IOException
     {
         column = new TableColumn<MovieManager, String>();
         tableView = new TableView<>();
+        movieModel = new MovieModel();
     }
 
 
