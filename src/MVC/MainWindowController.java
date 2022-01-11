@@ -151,23 +151,26 @@ public class MainWindowController implements Initializable
 
     public void createImagesForEachMovie() throws SQLException
     {
-        Image image = new Image("C:\\Users\\caspe\\Desktop\\Skole\\Eksammen\\PrirateMovieCollection\\Images\\Original-image-512x512-pixels_Q640.jpg");
         List<ImageView> imageViewList = new ArrayList<>();
+        int movieImgId = 1;
         double maxXPos = 300;
         double maxYPos = 0;
         double xPos = -200;
         double yPos = -200;
         for (Movie movie : movieModel.getObservableMovie()){
+            System.out.println(movieModel.getObservableMovie().get(movieImgId).getUrlImg());
+            Image image = new Image(movieModel.getObservableMovie().get(movieImgId).getUrlImg());
+            movieImgId = movieImgId +1;
             ImageView imageView = new ImageView(image);
             imageView.setScaleX(0.2);
             imageView.setScaleY(0.2);
             if (xPos >= maxXPos){
                 xPos = -200;
-                yPos = yPos + 50;
+                yPos = yPos + 110;
             }
             imageView.setLayoutX(xPos);
             imageView.setLayoutY(yPos);
-            xPos = xPos + 50;
+            xPos = xPos + 200;
             imageViewList.add(imageView);
             pane.getChildren().add(imageView);
         }
