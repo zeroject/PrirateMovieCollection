@@ -4,15 +4,10 @@ import BE.Category;
 import BE.Movie;
 import MVC.Model.CategoryModel;
 import MVC.Model.MovieModel;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-import javafx.collections.MapChangeListener;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.Scene;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -24,7 +19,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CreateMovieController implements Initializable {
@@ -42,7 +36,7 @@ public class CreateMovieController implements Initializable {
     @FXML
     private ComboBox<Category> categoryCombobox;
     @FXML
-    private Button but;
+    private Button createButton;
 
     private List<Category> categoryList;
 
@@ -89,7 +83,7 @@ public class CreateMovieController implements Initializable {
                 categoryModel.insertCategoryIntoMovie(movie.getId(), category.getId());
             }
 
-            Stage stage = (Stage) but.getScene().getWindow();
+            Stage stage = (Stage) createButton.getScene().getWindow();
             stage.close();
         }
     }
