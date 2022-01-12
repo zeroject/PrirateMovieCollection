@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CategoryManager {
 
-    CategoryDAO categoryDAO;
+    private CategoryDAO categoryDAO;
 
     public CategoryManager() throws IOException {
         categoryDAO = new CategoryDAO();
