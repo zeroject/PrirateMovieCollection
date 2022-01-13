@@ -19,7 +19,7 @@ public class MovieModel
         movieList = FXCollections.observableArrayList();
     }
 
-   public ObservableList<Movie> getObservableMovie() throws SQLException
+   public ObservableList<Movie> getObservableMovie()
    {
        movieList.clear();
        movieList.addAll(movieManager.getAllMovies());
