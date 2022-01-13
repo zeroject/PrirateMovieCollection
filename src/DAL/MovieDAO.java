@@ -33,10 +33,9 @@ public class MovieDAO
                     String title = rs.getString("MovieTitle");
                     float rating = rs.getFloat("MovieRating");
                     String fileUrl = rs.getString("MovieFile");
-                    String imgUrl = rs.getString("MovieImageFile");
                     String lastView = rs.getString("MovieLastView");
 
-                    Movie movie = new Movie(id, title, rating, fileUrl, imgUrl, lastView);
+                    Movie movie = new Movie(id, title, rating, fileUrl, lastView);
                     movies.add(movie);
                 }
             }
@@ -49,14 +48,13 @@ public class MovieDAO
 
     public Movie createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLException {
         try (Connection conn = connection.getConnection()){
-            String sql = "INSERT INTO Movies(MovieTitle, MovieRating, MovieFile, MovieImageFile, MovieLastView) values (?,?,?,?,?);";
+            String sql = "INSERT INTO Movies(MovieTitle, MovieRating, MovieFile, MovieLastView) values (?,?,?,?);";
 
             try(PreparedStatement preparedStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
                 preparedStatement.setString(1, title);
                 preparedStatement.setFloat(2, movieRating);
                 preparedStatement.setString(3, url);
-                preparedStatement.setString(4, imgUrl);
-                preparedStatement.setString(5, lastView);
+                preparedStatement.setString(4, lastView);
                 preparedStatement.executeUpdate();
                 ResultSet rs = preparedStatement.getGeneratedKeys();
 
@@ -65,7 +63,7 @@ public class MovieDAO
                     id = rs.getInt(1);
                 }
 
-                Movie movie = new Movie(id, title, movieRating, url, imgUrl, lastView);
+                Movie movie = new Movie(id, title, movieRating, url, lastView);
                 return movie;
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -76,13 +74,12 @@ public class MovieDAO
 
     public void updateMovie(Movie movie){
         try(Connection conn = connection.getConnection()){
-            String sql = "UPDATE Movies SET MovieTitle=?, MovieRating=?, MovieFile=?, MovieImageFile=? WHERE MovieId=?;";
+            String sql = "UPDATE Movies SET MovieTitle=?, MovieRating=?, MovieFile=? WHERE MovieId=?;";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, movie.getTitle());
             preparedStatement.setFloat(2, movie.getMovieRating());
             preparedStatement.setString(3, movie.getUrl());
-            preparedStatement.setString(4, movie.getUrlImg());
-            preparedStatement.setInt(5, movie.getId());
+            preparedStatement.setInt(4, movie.getId());
             if(preparedStatement.executeUpdate() != 1){
                 throw new Exception("Could not update Movie");
             }

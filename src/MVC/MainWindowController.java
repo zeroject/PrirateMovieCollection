@@ -43,10 +43,6 @@ public class MainWindowController implements Initializable
     @FXML
     private TableColumn movieColumn;
     @FXML
-    private TableColumn imageColumn;
-    @FXML
-    private javafx.scene.layout.Pane pane;
-    @FXML
     private TextField searchTextField;
     @FXML
     private ComboBox<Category> comboBox;
@@ -54,7 +50,6 @@ public class MainWindowController implements Initializable
 
     public MainWindowController() throws IOException{
         movieColumn = new TableColumn<MovieManager, String>();
-        imageColumn = new TableColumn<MovieManager, ImageView>();
         movieTableView = new TableView<>();
         movieModel = new MovieModel();
         categoryModel = new CategoryModel();
@@ -65,7 +60,6 @@ public class MainWindowController implements Initializable
     @Override public void initialize(URL location, ResourceBundle resources)
     {
         movieColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, String>("Title"));
-        imageColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, ImageView>("urlImg"));
         try
         {
             movieTableView.setItems(movieModel.getObservableMovie());

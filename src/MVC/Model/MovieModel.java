@@ -26,8 +26,8 @@ public class MovieModel
        return movieList;
    }
 
-    public Movie createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLException {
-        return movieManager.createMovie(title, movieRating, url, imgUrl, lastView);
+    public Movie createMovie(String title, float movieRating, String url, String lastView) throws SQLException {
+        return movieManager.createMovie(title, movieRating, url, lastView);
     }
     public void deleteMovie(Movie movie){
         movieManager.deleteMovie(movie);
@@ -40,9 +40,6 @@ public class MovieModel
         movieList.addAll(searchResults);
     }
 
-    public String movieImgUpdate(Movie movie){
-        return movieManager.updateMovieImage(movie);
-    }
 
     public void updateMovie(Movie movie){
         movieManager.updateMovie(movie);
