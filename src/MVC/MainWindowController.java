@@ -116,7 +116,7 @@ public class MainWindowController implements Initializable
     }
     public void chooseMovieScene() throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("View/Choose Movie.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("View/UpdateMovie.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -124,14 +124,8 @@ public class MainWindowController implements Initializable
         System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
         ParseModel.isDELETING = false;
     }
-    public void chooseMovieSceneDEL() throws IOException
+    public void chooseMovieSceneDEL()
     {
-        Parent root = FXMLLoader.load(getClass().getResource("View/Choose Movie.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
-        ParseModel.isDELETING = true;
+        movieModel.deleteMovie(movieTableView.getSelectionModel().getSelectedItem());
     }
 }
