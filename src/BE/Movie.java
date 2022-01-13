@@ -7,15 +7,13 @@ public class Movie {
     private String title;
     private float movieRating;
     private String url;
-    private String urlImg;
     private List<Category> categoryList;
 
-    public Movie(int id, String title, float movieRating, String url, String urlImg, String lastView){
+    public Movie(int id, String title, float movieRating, String url, String lastView){
         this.id = id;
         this.title = title;
         this.movieRating = movieRating;
         this.url = url;
-        this.urlImg = urlImg;
     }
 
     public int getId(){
@@ -45,11 +43,6 @@ public class Movie {
     public String getUrl()
     {
         return url;
-    }
-
-    public String getUrlImg()
-    {
-        return urlImg;
     }
 
     @Override public String toString()

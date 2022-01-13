@@ -30,8 +30,6 @@ public class CreateMovieController implements Initializable {
     @FXML
     private TextField textFieldUrl;
     @FXML
-    private TextField textFieldImgUrl;
-    @FXML
     private TextField textFieldCategory;
     @FXML
     private ComboBox<Category> categoryCombobox;
@@ -66,10 +64,6 @@ public class CreateMovieController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing a movie", ButtonType.OK);
             alert.showAndWait();
             
-        }else if (textFieldImgUrl.getText().isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing an image", ButtonType.OK);
-            alert.showAndWait();
-            
         }else if (textFieldCategory.getText().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing one or more categories", ButtonType.OK);
             alert.showAndWait();
@@ -77,7 +71,7 @@ public class CreateMovieController implements Initializable {
         }
         // End of Error Handling
         else{
-            Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), textFieldImgUrl.getText(), dtf.format(systemDate));
+            Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), dtf.format(systemDate));
 
             for (Category category : categoryList) {
                 categoryModel.insertCategoryIntoMovie(movie.getId(), category.getId());
@@ -96,22 +90,6 @@ public class CreateMovieController implements Initializable {
         }else if (!categoryList.contains(categoryCombobox.getSelectionModel().getSelectedItem()) && categoryCombobox.getSelectionModel().getSelectedItem() != null){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie already contains this category", ButtonType.OK);
             alert.showAndWait();
-        }
-    }
-
-
-    /**
-     * Opens a file explorer to choose an image (*.png, *.jpg, *.jpeg)
-     */
-    public void chooseImageFile(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
-        fileChooser.setInitialDirectory(new File("Images/" ));
-        File file = fileChooser.showOpenDialog(null);
-
-        if (file != null){
-            textFieldImgUrl.setText("Images\\" + file.getName());
-
         }
     }
 

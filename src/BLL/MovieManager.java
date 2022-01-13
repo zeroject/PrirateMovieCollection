@@ -19,8 +19,8 @@ public class MovieManager
         movieDAO = new MovieDAO();
     }
 
-    public Movie createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLException {
-        return movieDAO.createMovie(title,movieRating,url,imgUrl, lastView);
+    public Movie createMovie(String title, float movieRating, String url, String lastView) throws SQLException {
+        return movieDAO.createMovie(title,movieRating,url,lastView);
     }
     public void updateMovie(Movie movie){
         movieDAO.updateMovie(movie);
@@ -33,9 +33,6 @@ public class MovieManager
     }
     public List<Movie> searchMovies(String query, List<Movie> movieList) throws SQLException {
         return movieSearcher.search(movieList, query);
-    }
-    public String updateMovieImage(Movie movie){
-        return movie.getUrlImg();
     }
 
 }
