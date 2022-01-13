@@ -46,7 +46,7 @@ public class MovieDAO
         return movies;
     }
 
-    public Movie createMovie(String title, float movieRating, String url, String imgUrl, String lastView) throws SQLException {
+    public Movie createMovie(String title, float movieRating, String url, String lastView) throws SQLException {
         try (Connection conn = connection.getConnection()){
             String sql = "INSERT INTO Movies(MovieTitle, MovieRating, MovieFile, MovieLastView) values (?,?,?,?);";
 
