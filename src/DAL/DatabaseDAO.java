@@ -27,16 +27,6 @@ public class DatabaseDAO
     public Connection getConnection() throws SQLServerException {
         return dataSource.getConnection();
     }
-
-    public static void main(String[] args) throws IOException, SQLException {
-        DatabaseDAO databaseConnector = new DatabaseDAO();
-        Connection connection = databaseConnector.getConnection();
-
-        System.out.println("Did it open? " + !connection.isClosed());
-        connection.close();
-
-    }
-
 }
 
 

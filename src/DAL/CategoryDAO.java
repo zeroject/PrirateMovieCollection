@@ -116,12 +116,4 @@ public class CategoryDAO {
             System.out.println(ex);
         }
     }
-
-    public static void main(String[] args) throws IOException {
-        CategoryDAO categoryDAO = new CategoryDAO();
-
-        categoryDAO.addCategoryToMovie(1, 46);
-
-        System.out.println(categoryDAO.getAllCategoryMovies(1));
-    }
 }

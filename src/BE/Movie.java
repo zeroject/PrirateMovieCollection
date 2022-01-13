@@ -49,4 +49,14 @@ public class Movie {
     {
         return title;
     }
+
+    public void addCategoryToMovie(Category category)
+    {
+        categoryList.add(category);
+    }
+
+    public List<Category> getCategories()
+    {
+        return categoryList;
+    }
 }
