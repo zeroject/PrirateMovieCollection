@@ -2,6 +2,7 @@ package BLL;
 
 import BE.Movie;
 import BLL.util.MovieSearcher;
+import DAL.CategoryDAO;
 import DAL.MovieDAO;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class MovieManager
 {
+    private CategoryDAO categoryDAO;
     private MovieDAO movieDAO;
     private MovieSearcher movieSearcher;
 
@@ -17,6 +19,7 @@ public class MovieManager
     {
         movieSearcher = new MovieSearcher();
         movieDAO = new MovieDAO();
+        categoryDAO = new CategoryDAO();
     }
 
     public Movie createMovie(String title, float movieRating, String url, String lastView) throws SQLException {
@@ -28,10 +31,13 @@ public class MovieManager
     public void deleteMovie(Movie movie){
         movieDAO.deleteMovie(movie);
     }
-    public List<Movie> getAllMovies() throws SQLException {
+    public List<Movie> getAllMovies() {
+        for (Movie movie : movieDAO.getAllMovies()) {
+            movie.addCategoryToMovie(categoryDAO.getAllCategoryMovies(movie.getId()));
+        }
         return movieDAO.getAllMovies();
     }
-    public List<Movie> searchMovies(String query, List<Movie> movieList) throws SQLException {
+    public List<Movie> searchMovies(String query, List<Movie> movieList) {
         return movieSearcher.search(movieList, query);
     }
 

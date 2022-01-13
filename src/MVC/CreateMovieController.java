@@ -77,6 +77,7 @@ public class CreateMovieController implements Initializable {
                 categoryModel.insertCategoryIntoMovie(movie.getId(), category.getId());
             }
 
+
             Stage stage = (Stage) createButton.getScene().getWindow();
             stage.close();
         }

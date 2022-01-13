@@ -23,6 +23,7 @@ import javafx.stage.WindowEvent;
 import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable
@@ -46,7 +47,7 @@ public class MainWindowController implements Initializable
 
     public MainWindowController() throws IOException{
         movieColumn = new TableColumn<MovieManager, String>();
-        catColumn = new TableColumn<MovieManager, Category>();
+        catColumn = new TableColumn<MovieManager, List<Category>>();
         ratingColumn = new TableColumn<MovieManager, Float>();
         movieTableView = new TableView<>();
         movieModel = new MovieModel();
@@ -58,6 +59,8 @@ public class MainWindowController implements Initializable
     @Override public void initialize(URL location, ResourceBundle resources)
     {
         movieColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, String>("Title"));
+        catColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, List<Category>>("CategoryList"));
+        ratingColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, Float>("MovieRating"));
         try
         {
             movieTableView.setItems(movieModel.getObservableMovie());

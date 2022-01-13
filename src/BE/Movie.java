@@ -50,9 +50,9 @@ public class Movie {
         return title;
     }
 
-    public void addCategoryToMovie(Category category)
+    public void addCategoryToMovie(List<Category> category)
     {
-        categoryList.add(category);
+        categoryList = category;
     }
 
     public List<Category> getCategories()
