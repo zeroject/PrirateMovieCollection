@@ -1,5 +1,6 @@
 package BLL.util;
 
+import BE.Category;
 import BE.Movie;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class MovieSearcher
         List<Movie> searchResult = new ArrayList<>();
 
         for (Movie movie : searchBase){
-            if(compareToTitle(query, movie)){
+            if(compareToTitle(query, movie) || compareToGenre(query, movie)){
                 searchResult.add(movie);
             }
         }
@@ -20,5 +21,24 @@ public class MovieSearcher
 
     private boolean compareToTitle(String query, Movie movie){
         return movie.getTitle().toLowerCase().contains(query.toLowerCase());
+    }
+
+    private boolean compareToGenre(String query, Movie movie) {
+        boolean result = false;
+        if (movie.getCategories() != null)
+        {
+            for (Category category : movie.getCategories())
+            {
+                System.out.println(category.toString());
+                if (category.toString().contains(query.toLowerCase()))
+                {
+                    result = true;
+                }
+                 else {
+                     result = false;
+                }
+            }
+        }
+        return result;
     }
 }
