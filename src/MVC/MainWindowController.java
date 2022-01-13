@@ -122,7 +122,6 @@ public class MainWindowController implements Initializable
         stage.setScene(scene);
         stage.show();
         System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
-        ParseModel.isDELETING = false;
     }
     public void chooseMovieSceneDEL()
     {
