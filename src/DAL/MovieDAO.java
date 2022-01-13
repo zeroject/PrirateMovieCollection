@@ -1,7 +1,9 @@
 package DAL;
 
+import BE.Category;
 import BE.Movie;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -34,7 +36,6 @@ public class MovieDAO
                     float rating = rs.getFloat("MovieRating");
                     String fileUrl = rs.getString("MovieFile");
                     String lastView = rs.getString("MovieLastView");
-
 
                     Movie movie = new Movie(id, title, rating, fileUrl, lastView);
                     movies.add(movie);
