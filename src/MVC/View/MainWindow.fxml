@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -39,12 +38,6 @@
                   <items>
                     <MenuItem mnemonicParsing="false" text="About" />
                         <MenuItem mnemonicParsing="false" onAction="#refreshTable" text="Refresh" />
-                        <Menu mnemonicParsing="false" text="Developer Tools">
-                          <items>
-                              <MenuItem mnemonicParsing="false" onAction="#debugConsole" text="Debug Console" />
-                              <RadioMenuItem mnemonicParsing="false" text="Debug Mode" />
-                          </items>
-                        </Menu>
                   </items>
                 </Menu>
               </menus>
