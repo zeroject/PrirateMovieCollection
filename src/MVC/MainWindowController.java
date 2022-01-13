@@ -165,16 +165,7 @@ public class MainWindowController implements Initializable
             {
                 @Override public void handle(MouseEvent event)
                 {
-                    try
-                    {
-                        movieScene();
-                        if (buttonList. == movie.getId()){
-
-                        }
-                    } catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    
                 }
             });
             System.out.println(image);
