@@ -5,12 +5,10 @@ import BE.Movie;
 import MVC.Model.CategoryModel;
 import MVC.Model.MovieModel;
 import javafx.fxml.FXML;
-
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
