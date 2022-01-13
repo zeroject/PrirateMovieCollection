@@ -81,11 +81,7 @@ public class MainWindowController implements Initializable
     }
 
     public void createCategoryScene() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("View/Create Category.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        createScenes("View/Create Category.fxml", false, false);
     }
     public void deleteCategory(){
         categoryModel.deleteCategory(comboBox.getSelectionModel().getSelectedItem());
@@ -94,37 +90,33 @@ public class MainWindowController implements Initializable
 
     public void createMovieScene() throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("View/Create Movie.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
+        createScenes("View/Create Movie.fxml", false, false);
     }
 
     public void movieScene() throws IOException
     {
         ParseModel.movieURL = movieTableView.getSelectionModel().getSelectedItem().getUrl();
-        Parent root = FXMLLoader.load(getClass().getResource("View/MovieScene.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setFullScreen(true);
-        stage.show();
-        System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
+        createScenes("View/MovieScene.fxml", true, true);
     }
     public void chooseMovieScene() throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("View/UpdateMovie.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println(stage + " Laoded and the scene : " + scene + "has loaded");
+        createScenes("View/UpdateMovie.fxml", false, false);
     }
     public void chooseMovieSceneDEL()
     {
         movieModel.deleteMovie(movieTableView.getSelectionModel().getSelectedItem());
+    }
+
+    private void createScenes(String fxmlPlace, boolean fullscreen, boolean undecorated) throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource(fxmlPlace));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setFullScreen(fullscreen);
+        if (undecorated)
+            stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+        System.out.println(stage + " Loaded and the scene : " + scene + "has loaded");
     }
 }
