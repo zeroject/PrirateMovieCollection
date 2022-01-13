@@ -152,15 +152,32 @@ public class MainWindowController implements Initializable
     public void createImagesForEachMovie() throws SQLException
     {
         List<ImageView> imageViewList = new ArrayList<>();
-        int movieImgId = 1;
+        List<Button> buttonList = new ArrayList<>();
         double maxXPos = 300;
         double maxYPos = 0;
         double xPos = -200;
         double yPos = -200;
         for (Movie movie : movieModel.getObservableMovie()){
-            System.out.println(movieModel.getObservableMovie().get(movieImgId).getUrlImg());
-            Image image = new Image(movieModel.getObservableMovie().get(movieImgId).getUrlImg());
-            movieImgId = movieImgId +1;
+            System.out.println(movie.getUrlImg());
+            Image image = new Image(new File(movie.getUrlImg()).toURI().toString());
+            Button button = new Button();
+            button.setOnMouseClicked(new EventHandler<MouseEvent>()
+            {
+                @Override public void handle(MouseEvent event)
+                {
+                    try
+                    {
+                        movieScene();
+                        if (buttonList. == movie.getId()){
+
+                        }
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            System.out.println(image);
             ImageView imageView = new ImageView(image);
             imageView.setScaleX(0.2);
             imageView.setScaleY(0.2);
@@ -172,7 +189,9 @@ public class MainWindowController implements Initializable
             imageView.setLayoutY(yPos);
             xPos = xPos + 200;
             imageViewList.add(imageView);
+            buttonList.add(button);
             pane.getChildren().add(imageView);
+            pane.getChildren().add(button);
         }
     }
 
