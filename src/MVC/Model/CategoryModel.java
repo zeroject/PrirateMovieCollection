@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class CategoryModel {
+public class    CategoryModel {
 
     private CategoryManager categoryManager;
     private ObservableList<Category> categoryList;

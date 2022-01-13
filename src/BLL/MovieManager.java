@@ -10,8 +10,8 @@ import java.util.List;
 
 public class MovieManager
 {
-    MovieDAO movieDAO;
-    MovieSearcher movieSearcher;
+    private MovieDAO movieDAO;
+    private MovieSearcher movieSearcher;
 
     public MovieManager() throws IOException
     {
