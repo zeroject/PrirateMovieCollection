@@ -35,6 +35,10 @@ public class MainWindowController implements Initializable
     @FXML
     private TableColumn movieColumn;
     @FXML
+    private TableColumn catColumn;
+    @FXML
+    private TableColumn ratingColumn;
+    @FXML
     private TextField searchTextField;
     @FXML
     private ComboBox<Category> comboBox;
@@ -42,6 +46,8 @@ public class MainWindowController implements Initializable
 
     public MainWindowController() throws IOException{
         movieColumn = new TableColumn<MovieManager, String>();
+        catColumn = new TableColumn<MovieManager, Category>();
+        ratingColumn = new TableColumn<MovieManager, Float>();
         movieTableView = new TableView<>();
         movieModel = new MovieModel();
         categoryModel = new CategoryModel();
