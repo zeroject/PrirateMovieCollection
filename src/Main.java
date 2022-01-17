@@ -9,9 +9,9 @@ import java.sql.Date;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MVC/View/MainWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MVC/View/StartupWarning.fxml"));
         Parent root = loader.load();
-        primaryStage.setTitle("Pirate Movies");
+        primaryStage.setTitle("Warning");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         primaryStage.setResizable(true);
