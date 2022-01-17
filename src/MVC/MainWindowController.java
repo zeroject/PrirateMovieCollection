@@ -31,6 +31,7 @@ public class MainWindowController implements Initializable
     MovieModel movieModel;
     CategoryModel categoryModel;
 
+
     private double xOffset = 0;
     private double yOffset = 0;
 
@@ -109,8 +110,9 @@ public class MainWindowController implements Initializable
         ParseModel.movieURL = movieTableView.getSelectionModel().getSelectedItem().getUrl();
         createScenes("View/MovieScene.fxml",  true);
     }
-    public void chooseMovieScene() throws IOException
+    public void updateMovie() throws IOException
     {
+        ParseModel.tempMovie = movieTableView.getSelectionModel().getSelectedItem();
         createScenes("View/UpdateMovie.fxml", false);
     }
     public void chooseMovieSceneDEL()

@@ -76,10 +76,11 @@ public class MovieDAO
 
     public void updateMovie(Movie movie){
         try(Connection conn = connection.getConnection()){
-            String sql = "UPDATE Movies SET MovieTitle=?, MovieRating=? WHERE MovieId=?;";
+            String sql = "UPDATE Movies SET MovieTitle=?, MovieRating=?, MovieFile=? WHERE MovieId=?;";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, movie.getTitle());
             preparedStatement.setFloat(2, movie.getMovieRating());
+            preparedStatement.setString(3, movie.getUrl());
             preparedStatement.setInt(4, movie.getId());
             if(preparedStatement.executeUpdate() != 1){
                 throw new Exception("Could not update Movie");
@@ -103,5 +104,11 @@ public class MovieDAO
         } catch (Exception throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        MovieDAO movieDAO = new MovieDAO();
+
+        movieDAO.updateMovie();
     }
 }
