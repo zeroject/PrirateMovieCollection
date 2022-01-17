@@ -33,12 +33,6 @@ public class MovieSceneController implements Initializable
         media = new Media(file.toURI().toString());
         mp = new MediaPlayer(media);
         movieView.setMediaPlayer(mp);
-        DoubleProperty mvw = movieView.fitWidthProperty();
-        DoubleProperty mvh = movieView.fitHeightProperty();
-        mvw.bind(Bindings.selectDouble(movieView.sceneProperty(), "width"));
-        mvh.bind(Bindings.selectDouble(movieView.sceneProperty(), "height"));
-        movieView.setPreserveRatio(true);
-        movieView.setSmooth(false);
         mp.play();
     }
 

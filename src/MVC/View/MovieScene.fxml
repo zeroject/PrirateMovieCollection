@@ -5,16 +5,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.media.MediaView?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.MovieSceneController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.MovieSceneController">
    <children>
-      <MediaView fx:id="movieView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <viewport>
-            <Rectangle2D height="720.0" width="1280.0" />
-         </viewport>
-      </MediaView>
-      <Button layoutX="574.0" layoutY="681.0" mnemonicParsing="false" onAction="#playMov" text="Play" />
-      <Button layoutX="647.0" layoutY="681.0" mnemonicParsing="false" onAction="#pauseMov" text="Pause" />
-      <Button fx:id="button" layoutX="1256.0" mnemonicParsing="false" onAction="#closection" text="X" />
+      <AnchorPane prefHeight="25.0" prefWidth="1280.0" style="-fx-background-color: black;">
+         <children>
+            <Button fx:id="button" layoutX="1256.0" mnemonicParsing="false" onAction="#closection" prefHeight="25.0" prefWidth="23.0" text="X" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="25.0" prefHeight="719.0" prefWidth="1280.0" style="-fx-background-color: blue;">
+         <children>
+            <MediaView fx:id="movieView" fitHeight="720.0" fitWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </MediaView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-3.0" layoutY="745.0" prefHeight="33.0" prefWidth="1283.0" style="-fx-background-color: black;">
+         <children>
+            <Button layoutX="586.0" layoutY="4.0" mnemonicParsing="false" onAction="#playMov" text="Play" />
+            <Button layoutX="673.0" layoutY="4.0" mnemonicParsing="false" onAction="#pauseMov" text="Pause" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

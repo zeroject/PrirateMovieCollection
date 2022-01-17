@@ -31,6 +31,9 @@ public class MainWindowController implements Initializable
     MovieModel movieModel;
     CategoryModel categoryModel;
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
     @FXML
     private TableView<Movie> movieTableView;
     @FXML
@@ -90,7 +93,7 @@ public class MainWindowController implements Initializable
     }
 
     public void createCategoryScene() throws IOException {
-        createScenes("View/CreateCategory.fxml", false, false);
+        createScenes("View/CreateCategory.fxml",  false);
     }
     public void deleteCategory(){
         categoryModel.deleteCategory(comboBox.getSelectionModel().getSelectedItem());
@@ -99,32 +102,48 @@ public class MainWindowController implements Initializable
 
     public void createMovieScene() throws IOException
     {
-        createScenes("View/CreateMovie.fxml", false, false);
+        createScenes("View/CreateMovie.fxml",  false);
     }
 
     public void movieScene() throws IOException
     {
         ParseModel.movieURL = movieTableView.getSelectionModel().getSelectedItem().getUrl();
-        createScenes("View/MovieScene.fxml", true, true);
+        createScenes("View/MovieScene.fxml",  true);
     }
     public void chooseMovieScene() throws IOException
     {
-        createScenes("View/UpdateMovie.fxml", false, false);
+        createScenes("View/UpdateMovie.fxml", false);
     }
     public void chooseMovieSceneDEL()
     {
         movieModel.deleteMovie(movieTableView.getSelectionModel().getSelectedItem());
     }
 
-    private void createScenes(String fxmlPlace, boolean fullscreen, boolean undecorated) throws IOException
+    private void createScenes(String fxmlPlace, boolean undecorated) throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource(fxmlPlace));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setFullScreen(fullscreen);
-        if (undecorated)
+        if (undecorated){
             stage.initStyle(StageStyle.UNDECORATED);
+            root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = event.getSceneX();
+                    yOffset = event.getSceneY();
+                }
+            });
+
+            //move around here
+            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    stage.setX(event.getScreenX() - xOffset);
+                    stage.setY(event.getScreenY() - yOffset);
+                }
+            });
+        }
         stage.show();
         System.out.println(stage + " Loaded and the scene : " + scene + "has loaded");
     }
