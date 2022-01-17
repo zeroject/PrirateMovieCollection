@@ -90,7 +90,7 @@ public class MainWindowController implements Initializable
     }
 
     public void createCategoryScene() throws IOException {
-        createScenes("View/Create Category.fxml", false, false);
+        createScenes("View/CreateCategory.fxml", false, false);
     }
     public void deleteCategory(){
         categoryModel.deleteCategory(comboBox.getSelectionModel().getSelectedItem());
@@ -99,7 +99,7 @@ public class MainWindowController implements Initializable
 
     public void createMovieScene() throws IOException
     {
-        createScenes("View/Create Movie.fxml", false, false);
+        createScenes("View/CreateMovie.fxml", false, false);
     }
 
     public void movieScene() throws IOException
