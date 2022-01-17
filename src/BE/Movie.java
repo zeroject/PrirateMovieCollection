@@ -3,6 +3,7 @@ package BE;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
@@ -10,10 +11,10 @@ public class Movie {
     private String title;
     private float movieRating;
     private String url;
-    private ObservableList<Category> categoryList;
+    private List<Category> categoryList;
 
     public Movie(int id, String title, float movieRating, String url, String lastView){
-        categoryList = FXCollections.observableArrayList();
+        categoryList = new ArrayList<>();
         this.id = id;
         this.title = title;
         this.movieRating = movieRating;
@@ -54,14 +55,14 @@ public class Movie {
         return title;
     }
 
-    public ObservableList<Category> addCategoryToMovie(List<Category> category)
+    public void addCategoryToMovie(List<Category> category)
     {
-        categoryList.clear();
-        categoryList.addAll(category);
-        return categoryList;
+        for (Category category1 : category) {
+            categoryList.add(category1);
+        }
     }
 
-    public ObservableList<Category> getCategories()
+    public List<Category> getCategories()
     {
         return categoryList;
     }
