@@ -30,7 +30,6 @@ public class MovieSearcher
         {
             for (Category category : movie.getCategories())
             {
-                System.out.println(category.getName());
                 if (category.getName().toLowerCase().contains(query.toLowerCase()))
                 {
                     result = true;

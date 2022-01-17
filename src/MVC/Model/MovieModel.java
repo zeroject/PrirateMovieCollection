@@ -23,10 +23,6 @@ public class MovieModel
    {
        movieList.clear();
        movieList.addAll(movieManager.getAllMovies());
-       for (Movie movie : movieList)
-       {
-           System.out.println(movie.getCategories().toString()+2);
-       }
        return movieList;
    }
 
