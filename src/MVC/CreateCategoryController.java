@@ -15,11 +15,19 @@ public class CreateCategoryController
 
     private CategoryModel categoryModel;
 
-    public CreateCategoryController() throws IOException {
-        categoryModel = new CategoryModel();
+    public CreateCategoryController(){
+        try {
+            categoryModel = new CategoryModel();
+        } catch (IOException e){
+
+        }
     }
 
-    public void createCategory() throws SQLException {
-        categoryModel.createCategory(textFieldName.getText());
+    public void createCategory(){
+        try {
+            categoryModel.createCategory(textFieldName.getText());
+        } catch (SQLException e){
+
+        }
     }
 }

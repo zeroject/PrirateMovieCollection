@@ -20,9 +20,13 @@ public class UpdateMovieController
     private Slider slider;
     private MovieModel movieModel;
 
-    public UpdateMovieController() throws IOException {
-        slider = new Slider();
-        movieModel = new MovieModel();
+    public UpdateMovieController(){
+        try {
+            slider = new Slider();
+            movieModel = new MovieModel();
+        } catch (IOException e){
+
+        }
     }
 
     public void updateMovie(){

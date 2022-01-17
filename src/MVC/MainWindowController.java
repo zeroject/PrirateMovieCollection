@@ -49,13 +49,17 @@ public class MainWindowController implements Initializable
     private ComboBox<Category> comboBox;
 
 
-    public MainWindowController() throws IOException{
-        movieColumn = new TableColumn<MovieManager, String>();
-        catColumn = new TableColumn<MovieManager, List<Category>>();
-        ratingColumn = new TableColumn<MovieManager, Float>();
-        movieTableView = new TableView<>();
-        movieModel = new MovieModel();
-        categoryModel = new CategoryModel();
+    public MainWindowController(){
+        try {
+            movieColumn = new TableColumn<MovieManager, String>();
+            catColumn = new TableColumn<MovieManager, List<Category>>();
+            ratingColumn = new TableColumn<MovieManager, Float>();
+            movieTableView = new TableView<>();
+            movieModel = new MovieModel();
+            categoryModel = new CategoryModel();
+        } catch (IOException e){
+            
+        }
     }
 
 
@@ -92,7 +96,7 @@ public class MainWindowController implements Initializable
         }
     }
 
-    public void createCategoryScene() throws IOException {
+    public void createCategoryScene(){
         createScenes("View/CreateCategory.fxml",  false);
     }
     public void deleteCategory(){
@@ -100,52 +104,67 @@ public class MainWindowController implements Initializable
         comboBox.getItems().remove(comboBox.getSelectionModel().getSelectedItem());
     }
 
-    public void createMovieScene() throws IOException
+    public void createMovieScene()
     {
         createScenes("View/CreateMovie.fxml",  false);
     }
 
-    public void movieScene() throws IOException
+    public void movieScene()
     {
         ParseModel.movieURL = movieTableView.getSelectionModel().getSelectedItem().getUrl();
         createScenes("View/MovieScene.fxml",  true);
     }
-    public void updateMovie() throws IOException
+    public void updateMovie()
     {
         ParseModel.tempMovie = movieTableView.getSelectionModel().getSelectedItem();
-        createScenes("View/UpdateMovie.fxml", false);
+        if (ParseModel.tempMovie != null){
+            createScenes("View/UpdateMovie.fxml", false);
+        } else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please Select a Movie first!", ButtonType.OK);
+            alert.showAndWait();
+        }
     }
     public void chooseMovieSceneDEL()
     {
-        movieModel.deleteMovie(movieTableView.getSelectionModel().getSelectedItem());
+        if (movieTableView.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please Select a Movie first!", ButtonType.OK);
+            alert.showAndWait();
+        } else {
+            movieModel.deleteMovie(movieTableView.getSelectionModel().getSelectedItem());
+            refreshTable();
+        }
     }
 
-    private void createScenes(String fxmlPlace, boolean undecorated) throws IOException
+    private void createScenes(String fxmlPlace, boolean undecorated)
     {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlPlace));
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        if (undecorated){
-            stage.initStyle(StageStyle.UNDECORATED);
-            root.setOnMousePressed(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    xOffset = event.getSceneX();
-                    yOffset = event.getSceneY();
-                }
-            });
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlPlace));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            if (undecorated){
+                stage.initStyle(StageStyle.UNDECORATED);
+                root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        xOffset = event.getSceneX();
+                        yOffset = event.getSceneY();
+                    }
+                });
 
-            //move around here
-            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    stage.setX(event.getScreenX() - xOffset);
-                    stage.setY(event.getScreenY() - yOffset);
-                }
-            });
+                //move around here
+                root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        stage.setX(event.getScreenX() - xOffset);
+                        stage.setY(event.getScreenY() - yOffset);
+                    }
+                });
+            }
+            stage.show();
+            System.out.println(stage + " Loaded and the scene : " + scene + "has loaded");
+        } catch (IOException e){
+
         }
-        stage.show();
-        System.out.println(stage + " Loaded and the scene : " + scene + "has loaded");
     }
 }

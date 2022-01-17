@@ -39,10 +39,14 @@ public class CreateMovieController implements Initializable {
     private MovieModel movieModel;
     private CategoryModel categoryModel;
 
-    public CreateMovieController() throws IOException {
-        movieModel = new MovieModel();
-        categoryModel = new CategoryModel();
-        categoryList = new ArrayList<>();
+    public CreateMovieController(){
+        try {
+            movieModel = new MovieModel();
+            categoryModel = new CategoryModel();
+            categoryList = new ArrayList<>();
+        } catch (IOException e){
+
+        }
     }
 
     @Override
@@ -50,33 +54,37 @@ public class CreateMovieController implements Initializable {
         categoryCombobox.setItems(categoryModel.getObservableCategory());
     }
 
-    public void createMovie() throws SQLException {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDateTime systemDate = LocalDateTime.now();
-        // Beginning of Error Handling
-        if (textFieldTitle.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing a title", ButtonType.OK);
-            alert.showAndWait();
-            
-        }else if (textFieldUrl.getText().isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing a movie", ButtonType.OK);
-            alert.showAndWait();
-            
-        }else if (textFieldCategory.getText().isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing one or more categories", ButtonType.OK);
-            alert.showAndWait();
-            
-        }
-        // End of Error Handling
-        else{
-            Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), dtf.format(systemDate));
+    public void createMovie(){
+        try {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDateTime systemDate = LocalDateTime.now();
+            // Beginning of Error Handling
+            if (textFieldTitle.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing a title", ButtonType.OK);
+                alert.showAndWait();
 
-            for (Category category : categoryList) {
-                categoryModel.insertCategoryIntoMovie(movie.getId(), category.getId());
+            }else if (textFieldUrl.getText().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing a movie", ButtonType.OK);
+                alert.showAndWait();
+
+            }else if (textFieldCategory.getText().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing one or more categories", ButtonType.OK);
+                alert.showAndWait();
+
             }
+            // End of Error Handling
+            else{
+                Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), dtf.format(systemDate));
 
-            Stage stage = (Stage) createButton.getScene().getWindow();
-            stage.close();
+                for (Category category : categoryList) {
+                    categoryModel.insertCategoryIntoMovie(movie.getId(), category.getId());
+                }
+
+                Stage stage = (Stage) createButton.getScene().getWindow();
+                stage.close();
+            }
+        } catch (SQLException e){
+
         }
     }
 

@@ -17,14 +17,18 @@ public class StartupWarningController {
 
     }
 
-    public void goToMainWindow() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("View/MainWindow.fxml"));
-        Stage stage1 = new Stage();
-        stage1.setTitle("Pirate Movies");
-        stage1.setScene(new Scene(root));
-        stage1.show();
+    public void goToMainWindow() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("View/MainWindow.fxml"));
+            Stage stage1 = new Stage();
+            stage1.setTitle("Pirate Movies");
+            stage1.setScene(new Scene(root));
+            stage1.show();
 
-        Stage stage2 = (Stage) okButton.getScene().getWindow();
-        stage2.close();
+            Stage stage2 = (Stage) okButton.getScene().getWindow();
+            stage2.close();
+        } catch (IOException e){
+
+        }
     }
 }
