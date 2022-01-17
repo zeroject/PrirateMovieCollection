@@ -105,10 +105,4 @@ public class MovieDAO
             throwables.printStackTrace();
         }
     }
-
-    public static void main(String[] args) throws IOException {
-        MovieDAO movieDAO = new MovieDAO();
-
-        movieDAO.updateMovie();
-    }
 }

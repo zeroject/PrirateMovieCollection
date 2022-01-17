@@ -40,8 +40,8 @@ public class MovieModel
         movieList.addAll(searchResults);
     }
 
-
     public void updateMovie(Movie movie){
         movieManager.updateMovie(movie);
+        System.out.println(movie.getMovieRating());
     }
 }

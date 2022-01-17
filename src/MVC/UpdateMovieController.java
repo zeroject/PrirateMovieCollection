@@ -9,23 +9,29 @@ import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class UpdateMovieController
 {
     @FXML
     private Button updateButton;
     @FXML
-    private Slider slider = new Slider();
-    private MovieModel movieModel = new MovieModel();
+    private Slider slider;
+    private MovieModel movieModel;
 
     public UpdateMovieController() throws IOException {
+        slider = new Slider();
+        movieModel = new MovieModel();
     }
 
     public void updateMovie(){
-        float rating = (float) slider.getValue();
         Movie tempMovie = ParseModel.tempMovie;
-        tempMovie.setMovieRating(rating);
-        movieModel.updateMovie(tempMovie);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime systemDate = LocalDateTime.now();
+        Movie movie = new Movie(tempMovie.getId(), tempMovie.getTitle(), (float) slider.getValue(), tempMovie.getUrl(), dtf.format(systemDate));
+        movieModel.updateMovie(movie);
 
         Stage stage2 = (Stage) updateButton.getScene().getWindow();
         stage2.close();
