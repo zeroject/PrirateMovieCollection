@@ -8,7 +8,7 @@ public class Movie {
     private String title;
     private float movieRating;
     private String url;
-    private ArrayList<Category> categoryList;
+    private final ArrayList<Category> categoryList;
 
     public Movie(int id, String title, float movieRating, String url, String lastView){
         categoryList = new ArrayList<>();
@@ -54,9 +54,7 @@ public class Movie {
 
     public void addCategoryToMovie(List<Category> category)
     {
-        for (Category category1 : category) {
-            categoryList.add(category1);
-        }
+        categoryList.addAll(category);
     }
 
     public List<Category> getCategories()

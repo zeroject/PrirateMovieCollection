@@ -7,6 +7,7 @@ import DAL.MovieDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieManager
@@ -32,12 +33,13 @@ public class MovieManager
         movieDAO.deleteMovie(movie);
     }
     public List<Movie> getAllMovies() {
+        List<Movie> allMovies = new ArrayList<Movie>();
         for (Movie movie : movieDAO.getAllMovies()) {
             movie.addCategoryToMovie(categoryDAO.getAllCategoryMovies(movie.getId()));
-            System.out.println(movie.getCategories().toString());
+            allMovies.add(movie);
         }
 
-        return movieDAO.getAllMovies();
+        return allMovies;
     }
     public List<Movie> searchMovies(String query, List<Movie> movieList) {
         return movieSearcher.search(movieList, query);
