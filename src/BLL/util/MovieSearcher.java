@@ -25,14 +25,16 @@ public class MovieSearcher
 
     private boolean compareToGenre(String query, Movie movie) {
         boolean result = false;
+        System.out.println(movie.getCategories());
         if (movie.getCategories() != null)
         {
             for (Category category : movie.getCategories())
             {
-                System.out.println(category.toString());
-                if (category.toString().contains(query.toLowerCase()))
+                System.out.println(category.getName());
+                if (category.getName().toLowerCase().contains(query.toLowerCase()))
                 {
                     result = true;
+                    break;
                 }
                  else {
                      result = false;

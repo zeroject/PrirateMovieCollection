@@ -34,7 +34,9 @@ public class MovieManager
     public List<Movie> getAllMovies() {
         for (Movie movie : movieDAO.getAllMovies()) {
             movie.addCategoryToMovie(categoryDAO.getAllCategoryMovies(movie.getId()));
+            System.out.println(movie.getCategories().toString());
         }
+
         return movieDAO.getAllMovies();
     }
     public List<Movie> searchMovies(String query, List<Movie> movieList) {
