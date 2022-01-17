@@ -1,5 +1,6 @@
 package BE;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class Movie {
     private ObservableList<Category> categoryList;
 
     public Movie(int id, String title, float movieRating, String url, String lastView){
+        categoryList = FXCollections.observableArrayList();
         this.id = id;
         this.title = title;
         this.movieRating = movieRating;
