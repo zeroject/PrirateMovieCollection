@@ -60,7 +60,6 @@ public class MainWindowController implements Initializable
     {
         movieColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, String>("Title"));
         catColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, List<Category>>("CategoryList"));
-        ratingColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, Float>("MovieRating"));
         try
         {
             movieTableView.setItems(movieModel.getObservableMovie());
