@@ -44,8 +44,10 @@ public class CreateMovieController implements Initializable {
             movieModel = new MovieModel();
             categoryModel = new CategoryModel();
             categoryList = new ArrayList<>();
-        } catch (IOException e){
-
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
+            alert.setHeaderText("Ohh no an Error happend");
+            alert.showAndWait();
         }
     }
 
@@ -83,8 +85,10 @@ public class CreateMovieController implements Initializable {
                 Stage stage = (Stage) createButton.getScene().getWindow();
                 stage.close();
             }
-        } catch (SQLException e){
-
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
+            alert.setHeaderText("Ohh no an Error happend");
+            alert.showAndWait();
         }
     }
 

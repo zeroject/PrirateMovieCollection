@@ -57,8 +57,10 @@ public class MainWindowController implements Initializable
             movieTableView = new TableView<>();
             movieModel = new MovieModel();
             categoryModel = new CategoryModel();
-        } catch (IOException e){
-
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
+            alert.setHeaderText("Ohh no an Error happend");
+            alert.showAndWait();
         }
     }
 
@@ -78,8 +80,10 @@ public class MainWindowController implements Initializable
         {
             try {
                 movieModel.searchMovie(newValue);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (Exception e){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
+                alert.setHeaderText("Ohh no an Error happend");
+                alert.showAndWait();
             }
         }));
 
@@ -92,7 +96,9 @@ public class MainWindowController implements Initializable
             movieTableView.getItems().clear();
             movieTableView.setItems(movieModel.getObservableMovie());
         } catch (Exception e){
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
+            alert.setHeaderText("Ohh no an Error happend");
+            alert.showAndWait();
         }
     }
 
@@ -112,7 +118,7 @@ public class MainWindowController implements Initializable
     public void movieScene()
     {
         ParseModel.movieURL = movieTableView.getSelectionModel().getSelectedItem().getUrl();
-        createScenes("View/MovieScene.fxml",  true);
+        createScenes("View/MovieScen.fxml",  true);
     }
     public void updateMovie()
     {
@@ -163,8 +169,10 @@ public class MainWindowController implements Initializable
             }
             stage.show();
             System.out.println(stage + " Loaded and the scene : " + scene + "has loaded");
-        } catch (IOException e){
-
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
+            alert.setHeaderText("Ohh no an Error happend");
+            alert.showAndWait();
         }
     }
 }
