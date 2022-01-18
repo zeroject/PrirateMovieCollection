@@ -81,8 +81,8 @@ public class MovieDAO
             preparedStatement.setString(1, movie.getTitle());
             preparedStatement.setFloat(2, movie.getMovieRating());
             preparedStatement.setString(3, movie.getUrl());
-            preparedStatement.setInt(4, movie.getId());
-            preparedStatement.setTimestamp(5, movie.getLastView());
+            preparedStatement.setTimestamp(4, movie.getLastView());
+            preparedStatement.setInt(5, movie.getId());
             if(preparedStatement.executeUpdate() != 1){
                 throw new Exception("Could not update Movie");
             }
