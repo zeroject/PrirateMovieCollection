@@ -58,7 +58,7 @@ public class MainWindowController implements Initializable
             movieModel = new MovieModel();
             categoryModel = new CategoryModel();
         } catch (IOException e){
-            
+
         }
     }
 
