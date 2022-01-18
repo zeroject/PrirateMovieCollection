@@ -54,6 +54,10 @@ public class Movie {
         return lastView;
     }
 
+    public void setLastView(Timestamp currentTime){
+        this.lastView = currentTime;
+    }
+
     @Override public String toString()
     {
         return title;

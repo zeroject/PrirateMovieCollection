@@ -119,8 +119,15 @@ public class MainWindowController implements Initializable
 
     public void movieScene()
     {
+        java.sql.Timestamp currentTime = new java.sql.Timestamp(System.currentTimeMillis());
+        Movie movie = movieTableView.getSelectionModel().getSelectedItem();
+        System.out.println(movie.getTitle());
+        Movie tempMovie = new Movie(movie.getId(), movie.getTitle(), movie.getMovieRating(), movie.getUrl(), currentTime);
+        System.out.println(tempMovie.getLastView());
+        movieModel.updateMovie(tempMovie);
+
         ParseModel.movieURL = movieTableView.getSelectionModel().getSelectedItem().getUrl();
-        createScenes("View/MovieScen.fxml",  true);
+        createScenes("View/MovieScene.fxml",  true);
     }
     public void updateMovie()
     {
