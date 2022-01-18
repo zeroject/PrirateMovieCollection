@@ -7,6 +7,7 @@ import DAL.MovieDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class MovieManager
         categoryDAO = new CategoryDAO();
     }
 
-    public Movie createMovie(String title, float movieRating, String url, String lastView) throws SQLException {
+    public Movie createMovie(String title, float movieRating, String url, Timestamp lastView) throws SQLException {
         return movieDAO.createMovie(title,movieRating,url,lastView);
     }
     public void updateMovie(Movie movie){

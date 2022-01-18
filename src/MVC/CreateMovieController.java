@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -56,8 +57,8 @@ public class CreateMovieController implements Initializable {
 
     public void createMovie(){
         try {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDateTime systemDate = LocalDateTime.now();
+            java.sql.Timestamp lastView = new java.sql.Timestamp(System.currentTimeMillis());
+            
             // Beginning of Error Handling
             if (textFieldTitle.getText().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing a title", ButtonType.OK);
@@ -74,7 +75,7 @@ public class CreateMovieController implements Initializable {
             }
             // End of Error Handling
             else{
-                Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), dtf.format(systemDate));
+                Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), lastView);
 
                 for (Category category : categoryList) {
                     categoryModel.insertCategoryIntoMovie(movie.getId(), category.getId());

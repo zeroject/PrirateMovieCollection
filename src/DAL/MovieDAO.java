@@ -35,7 +35,7 @@ public class MovieDAO
                     String title = rs.getString("MovieTitle");
                     float rating = rs.getFloat("MovieRating");
                     String fileUrl = rs.getString("MovieFile");
-                    String lastView = rs.getString("MovieLastView");
+                    Timestamp lastView = rs.getTimestamp("MovieLastView");
 
                     Movie movie = new Movie(id, title, rating, fileUrl, lastView);
                     movies.add(movie);
@@ -48,7 +48,7 @@ public class MovieDAO
         return movies;
     }
 
-    public Movie createMovie(String title, float movieRating, String url, String lastView) throws SQLException {
+    public Movie createMovie(String title, float movieRating, String url, Timestamp lastView) throws SQLException {
         try (Connection conn = connection.getConnection()){
             String sql = "INSERT INTO Movies(MovieTitle, MovieRating, MovieFile, MovieLastView) values (?,?,?,?);";
 
@@ -56,7 +56,7 @@ public class MovieDAO
                 preparedStatement.setString(1, title);
                 preparedStatement.setFloat(2, movieRating);
                 preparedStatement.setString(3, url);
-                preparedStatement.setString(4, lastView);
+                preparedStatement.setTimestamp(4, lastView);
                 preparedStatement.executeUpdate();
                 ResultSet rs = preparedStatement.getGeneratedKeys();
 

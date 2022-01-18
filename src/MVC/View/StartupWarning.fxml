@@ -15,11 +15,11 @@
          </font>
       </Text>
       <Text layoutX="23.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remember to delete the following movies, because they have not been watched in a while and or has a bad rating" />
-      <TableView layoutX="23.0" layoutY="83.0" prefHeight="90.0" prefWidth="604.0">
+      <TableView fx:id="warningTable" layoutX="23.0" layoutY="83.0" prefHeight="90.0" prefWidth="604.0">
         <columns>
-          <TableColumn prefWidth="422.40007400512695" text="Title" />
-          <TableColumn prefWidth="63.2000732421875" text="Rating" />
-            <TableColumn prefWidth="117.5999755859375" text="Last Time Watched" />
+          <TableColumn fx:id="titleCol" prefWidth="378.4000129699707" text="Title" />
+          <TableColumn fx:id="ratingCol" prefWidth="44.8001708984375" text="Rating" />
+            <TableColumn fx:id="lastViewCol" prefWidth="177.599853515625" text="Last Time Watched" />
         </columns>
       </TableView>
       <Button fx:id="okButton" layoutX="308.0" layoutY="185.0" mnemonicParsing="false" onAction="#goToMainWindow" text="OK" />

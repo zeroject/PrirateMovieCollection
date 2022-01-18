@@ -32,9 +32,8 @@ public class UpdateMovieController
     public void updateMovie(){
         Movie tempMovie = ParseModel.tempMovie;
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDateTime systemDate = LocalDateTime.now();
-        Movie movie = new Movie(tempMovie.getId(), tempMovie.getTitle(), (float) slider.getValue(), tempMovie.getUrl(), dtf.format(systemDate));
+        java.sql.Timestamp lastView = new java.sql.Timestamp(System.currentTimeMillis());
+        Movie movie = new Movie(tempMovie.getId(), tempMovie.getTitle(), (float) slider.getValue(), tempMovie.getUrl(), lastView);
         movieModel.updateMovie(movie);
 
         Stage stage2 = (Stage) updateButton.getScene().getWindow();

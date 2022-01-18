@@ -23,6 +23,7 @@ import javafx.stage.WindowEvent;
 import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -40,9 +41,9 @@ public class MainWindowController implements Initializable
     @FXML
     private TableColumn movieColumn;
     @FXML
-    private TableColumn catColumn;
-    @FXML
     private TableColumn ratingColumn;
+    @FXML
+    private TableColumn lastViewColumn;
     @FXML
     private TextField searchTextField;
     @FXML
@@ -52,8 +53,8 @@ public class MainWindowController implements Initializable
     public MainWindowController(){
         try {
             movieColumn = new TableColumn<MovieManager, String>();
-            catColumn = new TableColumn<MovieManager, List<Category>>();
             ratingColumn = new TableColumn<MovieManager, Float>();
+            lastViewColumn = new TableColumn<MovieManager, Timestamp>();
             movieTableView = new TableView<>();
             movieModel = new MovieModel();
             categoryModel = new CategoryModel();
@@ -68,6 +69,7 @@ public class MainWindowController implements Initializable
     {
         movieColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, String>("Title"));
         ratingColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, Float>("MovieRating"));
+        lastViewColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, Timestamp>("LastView"));
         try
         {
             movieTableView.setItems(movieModel.getObservableMovie());

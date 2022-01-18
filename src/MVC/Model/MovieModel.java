@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class MovieModel
@@ -26,7 +27,7 @@ public class MovieModel
        return movieList;
    }
 
-    public Movie createMovie(String title, float movieRating, String url, String lastView) throws SQLException {
+    public Movie createMovie(String title, float movieRating, String url, Timestamp lastView) throws SQLException {
         return movieManager.createMovie(title, movieRating, url, lastView);
     }
     public void deleteMovie(Movie movie){
