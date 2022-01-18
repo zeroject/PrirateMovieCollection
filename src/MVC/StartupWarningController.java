@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,9 +76,14 @@ public class StartupWarningController implements Initializable {
     }
 
     public ObservableList<Movie> deleteTheseMovies(){
+        int twoYears = 730;
+        int lowestAllowedRating = 6;
+        java.sql.Timestamp currentTime = new java.sql.Timestamp(System.currentTimeMillis());
+
         ObservableList<Movie> movieList = FXCollections.observableArrayList();
         for (Movie movie : movieModel.getObservableMovie()) {
-            if (movie.getMovieRating() < 6){
+            long timeDiff = (currentTime.getTime() - movie.getLastView().getTime()) / (1000*60*60*24);
+            if (movie.getMovieRating() <= lowestAllowedRating || timeDiff > twoYears){
                 movieList.add(movie);
             }
         }
