@@ -97,7 +97,7 @@ public class CreateMovieController implements Initializable {
             categoryList.add(categoryCombobox.getSelectionModel().getSelectedItem());
             textFieldCategory.setText(categoryList.toString());
 
-        }else if (!categoryList.contains(categoryCombobox.getSelectionModel().getSelectedItem()) && categoryCombobox.getSelectionModel().getSelectedItem() != null){
+        }else if (!categoryList.contains(categoryCombobox.getSelectionModel().getSelectedItem()) || categoryCombobox.getSelectionModel().getSelectedItem() != null){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie already contains this category", ButtonType.OK);
             alert.showAndWait();
         }
