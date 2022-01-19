@@ -6,6 +6,7 @@ import MVC.Model.MovieModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -28,11 +29,16 @@ import java.util.ResourceBundle;
 
 public class StartupWarningController implements Initializable {
 
-    public Button okButton;
-    public TableView<Movie> warningTable;
-    public TableColumn titleCol;
-    public TableColumn ratingCol;
-    public TableColumn lastViewCol;
+    @FXML
+    private Button okButton;
+    @FXML
+    private TableView<Movie> warningTable;
+    @FXML
+    private TableColumn titleCol;
+    @FXML
+    private TableColumn ratingCol;
+    @FXML
+    private TableColumn lastViewCol;
 
     private MovieModel movieModel;
 
