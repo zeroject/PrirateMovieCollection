@@ -128,7 +128,7 @@ public class MainWindowController implements Initializable
         movieModel.updateMovie(tempMovie);
 
         ParseModel.movieURL = movieTableView.getSelectionModel().getSelectedItem().getUrl();
-        createScenes("View/MoviesScene.fxml",  true);
+        createScenes("View/MovieScene.fxml",  true);
     }
     public void updateMovie()
     {
