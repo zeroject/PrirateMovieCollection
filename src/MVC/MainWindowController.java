@@ -60,7 +60,7 @@ public class MainWindowController implements Initializable
             categoryModel = new CategoryModel();
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
-            alert.setHeaderText("Ohh no an Error happend");
+            alert.setHeaderText("Ohh no an Error happend : Error:0x006");
             alert.showAndWait();
         }
     }
@@ -84,7 +84,7 @@ public class MainWindowController implements Initializable
                 movieModel.searchMovie(newValue);
             } catch (Exception e){
                 Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
-                alert.setHeaderText("Ohh no an Error happend");
+                alert.setHeaderText("Ohh no an Error happend : Error:0x007");
                 alert.showAndWait();
             }
         }));
@@ -99,7 +99,7 @@ public class MainWindowController implements Initializable
             movieTableView.setItems(movieModel.getObservableMovie());
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
-            alert.setHeaderText("Ohh no an Error happend");
+            alert.setHeaderText("Ohh no an Error happend : Error:0x008");
             alert.showAndWait();
         }
     }
@@ -180,7 +180,7 @@ public class MainWindowController implements Initializable
             System.out.println(stage + " Loaded and the scene : " + scene + "has loaded");
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
-            alert.setHeaderText("Ohh no an Error happend");
+            alert.setHeaderText("Ohh no an Error happend : Error:0x009");
             alert.showAndWait();
         }
     }

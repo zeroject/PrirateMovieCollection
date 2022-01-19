@@ -4,3 +4,9 @@
 .opacity-forground{
     -fx-background-color:rgba(0, 0, 0, .35);
 }
+.menu-item .label{
+    -fx-text-fill: white;
+}
+.combo-box .label{
+    -fx-text-fill: white;
+}

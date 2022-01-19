@@ -47,7 +47,7 @@ public class CreateMovieController implements Initializable {
             categoryList = new ArrayList<>();
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
-            alert.setHeaderText("Ohh no an Error happend");
+            alert.setHeaderText("Ohh no an Error happend : Error:0x003");
             alert.showAndWait();
         }
     }
@@ -88,7 +88,7 @@ public class CreateMovieController implements Initializable {
             }
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
-            alert.setHeaderText("Ohh no an Error happend");
+            alert.setHeaderText("Ohh no an Error happend : Error:0x004");
             alert.showAndWait();
         }
     }
@@ -108,22 +108,29 @@ public class CreateMovieController implements Initializable {
      * Opens a file explorer to choose a movie (*.mp4, *.mpeg4)
      */
     public void chooseMovieFile(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.mp4", "*.mpeg4"));
-        fileChooser.setInitialDirectory(new File("Movies/"));
-        File file = fileChooser.showOpenDialog(null);
+        try{
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.mp4", "*.mpeg4"));
+            fileChooser.setInitialDirectory(new File("Movies/"));
+            File file = fileChooser.showOpenDialog(null);
 
 
-        if (file != null){
-            textFieldUrl.setText("Movies\\" + file.getName());
+            if (file != null){
+                textFieldUrl.setText("Movies\\" + file.getName());
 
-            String fileName = file.getName();
-            String[] filenames = {".mp4", ".mpeg4"};
-            for (String words: filenames){
+                String fileName = file.getName();
+                String[] filenames = {".mp4", ".mpeg4"};
+                for (String words: filenames){
 
-                fileName = fileName.replace(words, "".repeat(words.length()));
+                    fileName = fileName.replace(words, "".repeat(words.length()));
+                }
+                textFieldTitle.setText(fileName);
             }
-            textFieldTitle.setText(fileName);
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
+            alert.setHeaderText("Ohh no an Error happend : Error:0x005");
+            alert.showAndWait();
         }
+
     }
 }
