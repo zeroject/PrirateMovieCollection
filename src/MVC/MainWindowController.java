@@ -85,6 +85,7 @@ public class MainWindowController implements Initializable
             } catch (Exception e){
                 Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
                 alert.setHeaderText("Ohh no an Error happend : Error:0x007");
+                e.printStackTrace();
                 alert.showAndWait();
             }
         }));
