@@ -1,11 +1,20 @@
 .body-background{
     -fx-background-color:linear-gradient(from 25% 25% to 100% 100%, #0E154C, #085A89);
 }
-.opacity-forground{
-    -fx-background-color:rgba(0, 0, 0, .35);
+.body-background2{
+    -fx-background-color:linear-gradient(from 25% 25% to 100% 100%, #5f030f, #a20b1e);
 }
-.menu-item .label{
-    -fx-text-fill: white;
+.menu-bar {
+    -fx-background-color: transparent;
+}
+.menu .label, .menu-item .label {
+    -fx-text-fill: #eee;
+}
+.menu-item:focused {
+    -fx-background-color : rgba(6, 90, 137, 100);
+}
+.context-menu {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
 }
 .slider .axis {
     -fx-tick-label-fill: white;

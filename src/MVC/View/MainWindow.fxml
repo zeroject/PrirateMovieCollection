@@ -15,8 +15,8 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="body-background" stylesheets="@../../../CSS/style.css">
          <children>
-            <ComboBox fx:id="comboBox" layoutY="32.0" prefHeight="25.0" prefWidth="158.0" promptText="Category" stylesheets="@../../../CSS/style.css" />
-            <MenuBar layoutY="-1.0" prefHeight="0.0" prefWidth="600.0" stylesheets="@../../../CSS/style.css">
+            <ComboBox fx:id="comboBox" layoutX="245.0" layoutY="32.0" prefHeight="25.0" prefWidth="158.0" promptText="Category" stylesheets="@../../../CSS/style.css" />
+            <MenuBar layoutY="-1.0" prefHeight="25.0" prefWidth="600.0" stylesheets="@../../../CSS/style.css">
               <menus>
                   <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -42,7 +42,8 @@
                 </Menu>
               </menus>
                <styleClass>
-                  <String fx:value="body-background" />
+                  <String fx:value="menu-bar" />
+                  <String fx:value="menu" />
                   <String fx:value="menu-item" />
                </styleClass>
             </MenuBar>
@@ -54,7 +55,7 @@
               </columns>
             </TableView>
             <TextField fx:id="searchTextField" layoutX="403.0" layoutY="32.0" prefHeight="25.0" prefWidth="197.0" promptText="Movie Titel, Category, Genre" />
-            <Button layoutX="158.0" layoutY="32.0" mnemonicParsing="false" onAction="#movieScene" text="Play" />
+            <Button layoutY="32.0" mnemonicParsing="false" onAction="#movieScene" text="Play" />
          </children>
       </AnchorPane>
    </children>
