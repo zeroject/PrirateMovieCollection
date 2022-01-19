@@ -84,7 +84,7 @@ public class StartupWarningController implements Initializable {
         ObservableList<Movie> movieList = FXCollections.observableArrayList();
         for (Movie movie : movieModel.getObservableMovie()) {
             long timeDiff = (currentTime.getTime() - movie.getLastView().getTime()) / (1000*60*60*24);
-            if (movie.getMovieRating() <= lowestAllowedRating || timeDiff > twoYears){
+            if (movie.getMovieRating() <= lowestAllowedRating && timeDiff > twoYears){
                 movieList.add(movie);
             }
         }
