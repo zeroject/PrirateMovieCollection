@@ -154,6 +154,7 @@ public class MainWindowController implements Initializable
     {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPlace));
+            root.getStylesheets().add("file:css/style.css");
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);

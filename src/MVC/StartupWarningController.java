@@ -61,6 +61,7 @@ public class StartupWarningController implements Initializable {
     public void goToMainWindow() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("View/MainWindow.fxml"));
+            root.getStylesheets().add("file:css/style.css");
             Stage stage1 = new Stage();
             stage1.setTitle("Pirate Movies");
             stage1.setScene(new Scene(root));

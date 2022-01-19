@@ -13,19 +13,19 @@
    <children>
       <BorderPane layoutY="-1.0" prefHeight="400.0" prefWidth="186.0">
          <left>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="428.0" prefWidth="200.0" styleClass="body-background" stylesheets="@../../../CSS/style.css" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="createButton" layoutX="75.0" layoutY="361.0" mnemonicParsing="false" onAction="#createMovie" text="Create" />
                   <TextField fx:id="textFieldTitle" layoutX="26.0" layoutY="42.0" />
-                  <Label layoutX="26.0" layoutY="25.0" text="Title" />
-                  <Label layoutX="26.0" layoutY="74.0" text="Rating" />
-                  <Label layoutX="26.0" layoutY="127.0" text="File" />
+                  <Label layoutX="26.0" layoutY="25.0" text="Title" textFill="WHITE" />
+                  <Label layoutX="26.0" layoutY="74.0" text="Rating" textFill="WHITE" />
+                  <Label layoutX="26.0" layoutY="127.0" text="File" textFill="WHITE" />
                   <Slider fx:id="sliderRating" blockIncrement="0.5" layoutX="26.0" layoutY="91.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" prefHeight="38.0" prefWidth="150.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
                   <TextField fx:id="textFieldUrl" editable="false" layoutX="26.0" layoutY="144.0" />
                   <TextField fx:id="textFieldCategory" editable="false" layoutX="26.0" layoutY="325.0" />
                   <ComboBox fx:id="categoryCombobox" layoutX="25.0" layoutY="238.0" prefWidth="150.0" />
-                  <Text layoutX="26.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Category" />
-                  <Text layoutX="26.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categories" />
+                  <Text fill="WHITE" layoutX="26.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Category" />
+                  <Text fill="WHITE" layoutX="26.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categories" />
                   <Button layoutX="26.0" layoutY="270.0" mnemonicParsing="false" onAction="#addCategoryToMovie" text="Add Category" />
                   <Button layoutX="26.0" layoutY="175.0" mnemonicParsing="false" onAction="#chooseMovieFile" text="Choose" />
                </children>

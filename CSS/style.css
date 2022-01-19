@@ -7,6 +7,6 @@
 .menu-item .label{
     -fx-text-fill: white;
 }
-.combo-box .label{
-    -fx-text-fill: white;
+.slider .axis {
+    -fx-tick-label-fill: white;
 }

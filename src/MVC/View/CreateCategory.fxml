@@ -5,10 +5,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="203.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.CreateCategoryController">
+<AnchorPane prefHeight="203.0" prefWidth="346.0" styleClass="body-background" stylesheets="@../../../CSS/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.CreateCategoryController">
    <children>
-      <Button layoutX="268.0" layoutY="151.0" mnemonicParsing="false" onAction="#createCategory" text="yessir" />
+      <Button layoutX="268.0" layoutY="151.0" mnemonicParsing="false" onAction="#createCategory" text="create" />
       <TextField fx:id="textFieldName" layoutX="99.0" layoutY="77.0" />
-      <Label layoutX="51.0" layoutY="81.0" text="Naem:" />
+      <Label layoutX="51.0" layoutY="81.0" text="Name:" textFill="WHITE" />
    </children>
 </AnchorPane>
