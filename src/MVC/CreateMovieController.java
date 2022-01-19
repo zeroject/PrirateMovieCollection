@@ -59,8 +59,6 @@ public class CreateMovieController implements Initializable {
 
     public void createMovie(){
         try {
-            java.sql.Timestamp lastView = new java.sql.Timestamp(System.currentTimeMillis());
-            
             // Beginning of Error Handling
             if (textFieldTitle.getText().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing a title", ButtonType.OK);
@@ -77,6 +75,7 @@ public class CreateMovieController implements Initializable {
             }
             // End of Error Handling
             else{
+                java.sql.Timestamp lastView = new java.sql.Timestamp(System.currentTimeMillis());
                 Movie movie = movieModel.createMovie(textFieldTitle.getText(), (float) sliderRating.getValue(), textFieldUrl.getText(), lastView);
 
                 for (Category category : categoryList) {
