@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieSearcher {
+
     public List<Movie> search(List<Movie> searchBase, String query) {
         List<Movie> searchResult = new ArrayList<>();
 

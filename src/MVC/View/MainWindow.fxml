@@ -15,7 +15,7 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="body-background" stylesheets="@../../../CSS/style.css">
          <children>
-            <ComboBox fx:id="comboBox" layoutX="245.0" layoutY="32.0" prefHeight="25.0" prefWidth="158.0" promptText="Category" stylesheets="@../../../CSS/style.css" />
+            <ComboBox fx:id="comboBox" layoutX="245.0" layoutY="32.0" onAction="#sortMovieList" prefHeight="25.0" prefWidth="158.0" promptText="Category" stylesheets="@../../../CSS/style.css" />
             <MenuBar layoutY="-1.0" prefHeight="25.0" prefWidth="600.0" stylesheets="@../../../CSS/style.css">
               <menus>
                   <Menu mnemonicParsing="false" text="File">

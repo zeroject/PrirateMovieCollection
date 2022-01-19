@@ -1,5 +1,6 @@
 package MVC.Model;
 
+import BE.Category;
 import BE.Movie;
 import BLL.MovieManager;
 import javafx.collections.FXCollections;
@@ -14,6 +15,7 @@ public class MovieModel
 {
     private MovieManager movieManager = new MovieManager();
     private ObservableList<Movie> movieList;
+    private List<Movie> sortedMovies;
 
     public MovieModel() throws IOException
     {
@@ -24,7 +26,16 @@ public class MovieModel
    {
        movieList.clear();
        movieList.addAll(movieManager.getAllMovies());
+
        return movieList;
+   }
+
+   public void CategorySort(Category category)
+   {
+       List<Movie> allMovies = movieManager.getAllMovies();
+       sortedMovies = movieManager.searchMovies(category.getName(), allMovies);
+       movieList.clear();
+       movieList.addAll(sortedMovies);
    }
 
     public Movie createMovie(String title, float movieRating, String url, Timestamp lastView) throws SQLException {
@@ -35,8 +46,7 @@ public class MovieModel
     }
 
     public void searchMovie(String query) throws SQLException {
-        List<Movie> allMovies = movieManager.getAllMovies();
-        List<Movie> searchResults = movieManager.searchMovies(query, allMovies);
+        List<Movie> searchResults = movieManager.searchMovies(query, sortedMovies);
         movieList.clear();
         movieList.addAll(searchResults);
     }

@@ -186,4 +186,9 @@ public class MainWindowController implements Initializable
             alert.showAndWait();
         }
     }
+
+    public void sortMovieList()
+    {
+        movieModel.CategorySort(comboBox.getSelectionModel().getSelectedItem());
+    }
 }
