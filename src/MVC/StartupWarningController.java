@@ -61,6 +61,7 @@ public class StartupWarningController implements Initializable {
     public void goToMainWindow() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("View/MainWindow.fxml"));
+            root.getStylesheets().add("file:css/style.css");
             Stage stage1 = new Stage();
             stage1.setTitle("Pirate Movies");
             stage1.setScene(new Scene(root));
@@ -70,7 +71,7 @@ public class StartupWarningController implements Initializable {
             stage2.close();
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
-            alert.setHeaderText("Ohh no an Error happend");
+            alert.setHeaderText("Ohh no an Error happend : Error:0x010");
             alert.showAndWait();
         }
     }
