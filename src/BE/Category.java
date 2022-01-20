@@ -10,6 +10,10 @@ public class Category {
         this.name = name;
     }
 
+    /**
+     * get methods for returning data
+     * @return
+     */
     public int getId(){
         return id;
     }
