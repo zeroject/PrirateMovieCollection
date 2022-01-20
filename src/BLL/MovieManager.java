@@ -24,6 +24,10 @@ public class MovieManager
         categoryDAO = new CategoryDAO();
     }
 
+    /**
+     * pases methods from MovieDAO and MovieSearcher
+     * @throws SQLException
+     */
     public Movie createMovie(String title, float movieRating, String url, Timestamp lastView) throws SQLException {
         return movieDAO.createMovie(title,movieRating,url,lastView);
     }
