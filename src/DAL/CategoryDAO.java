@@ -1,7 +1,6 @@
 package DAL;
 
 import BE.Category;
-
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,6 +14,10 @@ public class CategoryDAO {
         connection = new DatabaseDAO();
     }
 
+    /**
+     * In this method we extract all categories from the categoryTable in the database to the program with the help of the SQL command SELECT*
+     * @return an arraylist of all categories
+     */
     public List<Category> getAllCategories() {
 
         ArrayList<Category> categories = new ArrayList<>();
@@ -40,6 +43,11 @@ public class CategoryDAO {
         return categories;
     }
 
+    /**
+     * uses the SQL command SELECT * on the catMovie table to extract all categories bound to a specific movieId
+     * @param movieId used get get all categories bound to this ID
+     * @return a list of categories from a movie
+     */
     public List<Category> getAllCategoryMovies(int movieId) {
         List<Category> categoriesInMovie = new ArrayList<>();
         try (Connection conn = connection.getConnection()) {
@@ -67,7 +75,10 @@ public class CategoryDAO {
         }
         return categoriesInMovie;
     }
-
+    /**
+     *Uses the SQL command INSERT INTO to create a new category in the database table Categories
+     * @param name the parameter is the name of the category
+     */
     public void createCategory(String name) throws SQLException {
         try (Connection conn = connection.getConnection()){
             String sql = "INSERT INTO Categories(CategoryName) values (?);";
@@ -88,6 +99,10 @@ public class CategoryDAO {
         }
     }
 
+    /**
+     * checks where the ID of a specific category is and then deletes the category first from the CatMovie table and then the category table
+     * @param category to be deleted
+     */
     public void deleteCategory(Category category){
         try(Connection conn = connection.getConnection()){
             String sql1 = "DELETE FROM CatMovie WHERE CategoryId =?;";
@@ -104,6 +119,11 @@ public class CategoryDAO {
         }
     }
 
+    /**
+     * adds a song to a playlist using the third table Playlistsongs with the SQL command INSERT INTO
+     * @param movieId the id of the movie that it's getting added to
+     * @param categoryId the id of the category that is getting added to the movie
+     */
     public void addCategoryToMovie(int movieId, int categoryId)
     {
         String sql = "INSERT INTO CatMovie(MovieId, CategoryId) VALUES (?, ?)";

@@ -5,7 +5,6 @@ import BLL.MovieManager;
 import MVC.Model.MovieModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,13 +17,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class StartupWarningController implements Initializable {
@@ -42,6 +37,10 @@ public class StartupWarningController implements Initializable {
 
     private MovieModel movieModel;
 
+    /**
+     * Instantiates the tableviews and connections to other classes
+     * @throws IOException
+     */
     public StartupWarningController() throws IOException {
         movieModel = new MovieModel();
 
@@ -51,6 +50,11 @@ public class StartupWarningController implements Initializable {
         warningTable = new TableView<>();
     }
 
+    /**
+     * Initializes the tableviews and fills them with data before startup
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         titleCol.setCellValueFactory(new PropertyValueFactory<MovieManager, String>("Title"));
@@ -64,6 +68,9 @@ public class StartupWarningController implements Initializable {
         }
     }
 
+    /**
+     * method used to go to the MainWindow View
+     */
     public void goToMainWindow() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("View/MainWindow.fxml"));
@@ -82,6 +89,10 @@ public class StartupWarningController implements Initializable {
         }
     }
 
+    /**
+     * method responsible for making an observable list for the tableview of outdated movies
+     * @return an obvservable list of movies
+     */
     public ObservableList<Movie> deleteTheseMovies(){
         int twoYears = 730;
         int lowestAllowedRating = 6;
