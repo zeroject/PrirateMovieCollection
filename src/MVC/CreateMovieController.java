@@ -110,12 +110,11 @@ public class CreateMovieController implements Initializable {
         try{
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.mp4", "*.mpeg4"));
-            fileChooser.setInitialDirectory(new File("Movies/"));
             File file = fileChooser.showOpenDialog(null);
 
 
             if (file != null){
-                textFieldUrl.setText("Movies\\" + file.getName());
+                textFieldUrl.setText(file.getAbsolutePath());
 
                 String fileName = file.getName();
                 String[] filenames = {".mp4", ".mpeg4"};
