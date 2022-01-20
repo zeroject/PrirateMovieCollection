@@ -1,10 +1,6 @@
 package DAL;
 
-import BE.Category;
 import BE.Movie;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-import javafx.collections.ObservableList;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,6 +16,10 @@ public class MovieDAO
         connection = new DatabaseDAO();
     }
 
+    /**
+     * In this method we extract all movies from the movieTable in the database to the program with the help of the SQL command SELECT*
+     * @return an arraylist of all movies
+     */
     public List<Movie> getAllMovies() {
 
         ArrayList<Movie> movies = new ArrayList<>();
@@ -48,6 +48,15 @@ public class MovieDAO
         return movies;
     }
 
+    /**
+     * Uses the SQL command INSERT INTO to create a new movie in the database table movies
+     * @param title of the specific movie
+     * @param movieRating of the movie
+     * @param url the filepath to the song .mp3 or .wav file
+     * @param lastView the last time the movie was watched or updated
+     * @return
+     * @throws SQLException
+     */
     public Movie createMovie(String title, float movieRating, String url, Timestamp lastView) throws SQLException {
         try (Connection conn = connection.getConnection()){
             String sql = "INSERT INTO Movies(MovieTitle, MovieRating, MovieFile, MovieLastView) values (?,?,?,?);";
@@ -74,6 +83,10 @@ public class MovieDAO
         return null;
     }
 
+    /**
+     * takes every parameter of an already existing movie object and then sets the new values into an updated movie
+     * @param movie returns the value of the updated movie
+     */
     public void updateMovie(Movie movie){
         try(Connection conn = connection.getConnection()){
             String sql = "UPDATE Movies SET MovieTitle=?, MovieRating=?, MovieFile=?, MovieLastView=? WHERE MovieId=?;";
@@ -91,6 +104,10 @@ public class MovieDAO
         }
     }
 
+    /**
+     * checks where the ID of a specific movie is and then deletes the movie from first the catMovie table and then the movies table
+     * @param movie song to be deleted
+     */
     public void deleteMovie(Movie movie){
         try(Connection conn = connection.getConnection()){
             String sql1 = "DELETE FROM CatMovie WHERE MovieId =?;";

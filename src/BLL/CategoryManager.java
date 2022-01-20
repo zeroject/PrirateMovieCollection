@@ -14,6 +14,10 @@ public class CategoryManager {
         categoryDAO = new CategoryDAO();
     }
 
+    /**
+     * pases methods from CategoryDAO
+     * @return
+     */
     public List<Category> getAllCategories(){
         return categoryDAO.getAllCategories();
     }

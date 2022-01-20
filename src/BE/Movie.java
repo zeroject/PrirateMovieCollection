@@ -21,6 +21,10 @@ public class Movie {
         this.lastView = lastView;
     }
 
+    /**
+     * get methods for getting relevant info from movie object
+     * @return
+     */
     public int getId(){
         return id;
     }
@@ -30,19 +34,9 @@ public class Movie {
         return title;
     }
 
-    public void setTitle(String title)
-    {
-        this.title = title;
-    }
-
     public float getMovieRating()
     {
         return movieRating;
-    }
-
-    public void setMovieRating(float movieRating)
-    {
-        this.movieRating = movieRating;
     }
 
     public String getUrl()
@@ -54,22 +48,23 @@ public class Movie {
         return lastView;
     }
 
-    public void setLastView(Timestamp currentTime){
-        this.lastView = currentTime;
-    }
-
-    @Override public String toString()
+    @Override
+    public String toString()
     {
         return title;
-    }
-
-    public void addCategoryToMovie(List<Category> category)
-    {
-        categoryList.addAll(category);
     }
 
     public List<Category> getCategories()
     {
         return categoryList;
+    }
+
+    /**
+     * adds categories to the movie object
+     * @param category object to hold name and id of the category
+     */
+    public void addCategoryToMovie(List<Category> category)
+    {
+        categoryList.addAll(category);
     }
 }
