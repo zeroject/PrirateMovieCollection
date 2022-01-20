@@ -120,8 +120,7 @@ public class CreateMovieController implements Initializable {
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.mp4", "*.mpeg4"));
             File file = fileChooser.showOpenDialog(null);
-
-
+            
             if (file != null){
                 textFieldUrl.setText(file.getAbsolutePath());
 
