@@ -10,12 +10,7 @@ import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -40,6 +35,7 @@ public class CreateMovieController implements Initializable {
     private MovieModel movieModel;
     private CategoryModel categoryModel;
 
+    //Constructor
     public CreateMovieController(){
         try {
             movieModel = new MovieModel();
@@ -57,8 +53,16 @@ public class CreateMovieController implements Initializable {
         categoryCombobox.setItems(categoryModel.getObservableCategory());
     }
 
+    /**
+    * createMovie function calls on a function in movieModel and categoryModel.
+    * it pases data like two Strings one for name and the other for the filepath, it also parses a float for the rating.
+    * And a date for when it was last viewed.
+     */
     public void createMovie(){
         try {
+            /*
+            * some Alerts to mind to user that they forgot to put some data in.
+             */
             // Beginning of Error Handling
             if (textFieldTitle.getText().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This movie instance is missing a title", ButtonType.OK);
@@ -92,6 +96,11 @@ public class CreateMovieController implements Initializable {
         }
     }
 
+
+    /**
+    * the function addCategoryToMovie is used when a category has been selected in the combobox and the button has been pressed.
+     * it takes the object from the combobox and parses it to a list.
+     */
     public void addCategoryToMovie(){
         if (!categoryList.contains(categoryCombobox.getSelectionModel().getSelectedItem()) && categoryCombobox.getSelectionModel().getSelectedItem() != null) {
             categoryList.add(categoryCombobox.getSelectionModel().getSelectedItem());

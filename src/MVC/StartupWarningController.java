@@ -5,7 +5,6 @@ import BLL.MovieManager;
 import MVC.Model.MovieModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -17,13 +16,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class StartupWarningController implements Initializable {
@@ -77,17 +72,24 @@ public class StartupWarningController implements Initializable {
     }
 
     public ObservableList<Movie> deleteTheseMovies(){
-        int twoYears = 730;
-        int lowestAllowedRating = 6;
-        java.sql.Timestamp currentTime = new java.sql.Timestamp(System.currentTimeMillis());
+        try{
+            int twoYears = 730;
+            int lowestAllowedRating = 6;
+            java.sql.Timestamp currentTime = new java.sql.Timestamp(System.currentTimeMillis());
 
-        ObservableList<Movie> movieList = FXCollections.observableArrayList();
-        for (Movie movie : movieModel.getObservableMovie()) {
-            long timeDiff = (currentTime.getTime() - movie.getLastView().getTime()) / (1000*60*60*24);
-            if (movie.getMovieRating() <= lowestAllowedRating || timeDiff > twoYears){
-                movieList.add(movie);
+            ObservableList<Movie> movieList = FXCollections.observableArrayList();
+            for (Movie movie : movieModel.getObservableMovie()) {
+                long timeDiff = (currentTime.getTime() - movie.getLastView().getTime()) / (1000*60*60*24);
+                if (movie.getMovieRating() <= lowestAllowedRating || timeDiff > twoYears){
+                    movieList.add(movie);
+                }
             }
+            return movieList;
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
+            alert.setHeaderText("Ohh no an Error happend : Error:0x011");
+            alert.showAndWait();
         }
-        return movieList;
+        return null;
     }
 }
