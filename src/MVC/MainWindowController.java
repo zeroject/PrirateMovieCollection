@@ -66,7 +66,11 @@ public class MainWindowController implements Initializable
     }
 
 
-
+    /**
+     * In initialize there is a listener added to the textfield to see if the user has writing something.
+     * @param location
+     * @param resources
+     */
     @Override public void initialize(URL location, ResourceBundle resources)
     {
         movieColumn.setCellValueFactory(new PropertyValueFactory<MovieManager, String>("Title"));
@@ -93,6 +97,9 @@ public class MainWindowController implements Initializable
         comboBox.setItems(categoryModel.getObservableCategory());
     }
 
+    /**
+     * refreshTable is used to update the list with all the new movies or remove thoose who have been removed.
+     */
     public void refreshTable() {
         try
         {
@@ -105,6 +112,9 @@ public class MainWindowController implements Initializable
         }
     }
 
+    /**
+     * Creating of scenes.
+     */
     public void createCategoryScene(){
         createScenes("View/CreateCategory.fxml",  false);
     }
@@ -112,12 +122,15 @@ public class MainWindowController implements Initializable
         categoryModel.deleteCategory(comboBox.getSelectionModel().getSelectedItem());
         comboBox.getItems().remove(comboBox.getSelectionModel().getSelectedItem());
     }
-
     public void createMovieScene()
     {
         createScenes("View/CreateMovie.fxml",  false);
     }
 
+    /**
+     * movieScene makes a new datetime to give to the movie that is being watched to update when it last was viewed.
+     * it takes the url from the table and gives it to ParseModel that gives the info to the Moviescene later.
+     */
     public void movieScene()
     {
         java.sql.Timestamp currentTime = new java.sql.Timestamp(System.currentTimeMillis());
@@ -130,6 +143,10 @@ public class MainWindowController implements Initializable
         ParseModel.movieURL = movieTableView.getSelectionModel().getSelectedItem().getUrl();
         createScenes("View/MovieScene.fxml",  true);
     }
+
+    /**
+     * gives ParseModel the movie from the table that needs to be updated.
+     */
     public void updateMovie()
     {
         ParseModel.tempMovie = movieTableView.getSelectionModel().getSelectedItem();
@@ -140,6 +157,10 @@ public class MainWindowController implements Initializable
             alert.showAndWait();
         }
     }
+
+    /**
+     * Deletes the movie curent selected in the table.
+     */
     public void chooseMovieSceneDEL()
     {
         if (movieTableView.getSelectionModel().getSelectedItem() == null){
@@ -151,6 +172,12 @@ public class MainWindowController implements Initializable
         }
     }
 
+    /**
+     * createScenes function handles all the scenes that needs to be generated it takes to parameters.
+     * one for filepath of the FXML file, the other is for if the window needs to be undecorated.
+     * @param fxmlPlace
+     * @param undecorated
+     */
     private void createScenes(String fxmlPlace, boolean undecorated)
     {
         try {
@@ -159,8 +186,10 @@ public class MainWindowController implements Initializable
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            // if undecorated is true then there needs to be a way to move the window around.
             if (undecorated){
                 stage.initStyle(StageStyle.UNDECORATED);
+                //when the mouse button has been pressed it remebers the position of it has been pressed for the window.
                 root.setOnMousePressed(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
@@ -169,7 +198,7 @@ public class MainWindowController implements Initializable
                     }
                 });
 
-                //move around here
+                //when the mouse is dragged it moves the scene around with the position of the mouse in mind.
                 root.setOnMouseDragged(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
@@ -187,6 +216,9 @@ public class MainWindowController implements Initializable
         }
     }
 
+    /**
+     * sorts the table with movies that has the given category.
+     */
     public void sortMovieList()
     {
         movieModel.CategorySort(comboBox.getSelectionModel().getSelectedItem());

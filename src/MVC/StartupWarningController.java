@@ -94,17 +94,23 @@ public class StartupWarningController implements Initializable {
      * @return an obvservable list of movies
      */
     public ObservableList<Movie> deleteTheseMovies(){
-        int twoYears = 730;
-        int lowestAllowedRating = 6;
-        java.sql.Timestamp currentTime = new java.sql.Timestamp(System.currentTimeMillis());
-
-        ObservableList<Movie> movieList = FXCollections.observableArrayList();
-        for (Movie movie : movieModel.getObservableMovie()) {
-            long timeDiff = (currentTime.getTime() - movie.getLastView().getTime()) / (1000*60*60*24);
-            if (movie.getMovieRating() <= lowestAllowedRating && timeDiff > twoYears){
-                movieList.add(movie);
+        try{
+            int twoYears = 730;
+            int lowestAllowedRating = 6;
+            java.sql.Timestamp currentTime = new java.sql.Timestamp(System.currentTimeMillis());
+            ObservableList<Movie> movieList = FXCollections.observableArrayList();
+            for (Movie movie : movieModel.getObservableMovie()) {
+                long timeDiff = (currentTime.getTime() - movie.getLastView().getTime()) / (1000 * 60 * 60 * 24);
+                if (movie.getMovieRating() <= lowestAllowedRating || timeDiff > twoYears) {
+                    movieList.add(movie);
+                }
+                return movieList;
             }
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
+            alert.setHeaderText("Ohh no an Error happend : Error:0x011");
+            alert.showAndWait();
         }
-        return movieList;
+        return null;
     }
 }

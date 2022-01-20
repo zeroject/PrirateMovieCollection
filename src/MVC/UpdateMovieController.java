@@ -4,13 +4,11 @@ import BE.Movie;
 import MVC.Model.MovieModel;
 import MVC.Model.ParseModel;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class UpdateMovieController
 {
@@ -24,11 +22,17 @@ public class UpdateMovieController
         try {
             slider = new Slider();
             movieModel = new MovieModel();
-        } catch (IOException e){
-
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "" + e, ButtonType.OK);
+            alert.setHeaderText("Ohh no an Error happend : Error:0x0011");
+            alert.showAndWait();
         }
     }
 
+    /**
+     * gets the movie from the ParseModel.
+     * it makes a new datetime to give movie so it knows when the last time it has been watched.
+     */
     public void updateMovie(){
         Movie tempMovie = ParseModel.tempMovie;
 

@@ -6,9 +6,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
-import java.sql.SQLException;
-
 public class CreateCategoryController
 {
 
@@ -17,6 +14,7 @@ public class CreateCategoryController
 
     private CategoryModel categoryModel;
 
+    //Constructor
     public CreateCategoryController(){
         try {
             categoryModel = new CategoryModel();
@@ -27,6 +25,9 @@ public class CreateCategoryController
         }
     }
 
+    /*
+    * Function thats calls on a function in CategoryModel that needs a String as a paremeter.
+     */
     public void createCategory(){
         try {
             categoryModel.createCategory(textFieldName.getText());

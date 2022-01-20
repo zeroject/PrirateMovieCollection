@@ -43,7 +43,7 @@ public class MovieDAO
             }
 
         }catch (SQLException throwable){
-            throwable.printStackTrace();
+            throwable.getNextException();
         }
         return movies;
     }
@@ -77,7 +77,7 @@ public class MovieDAO
                 Movie movie = new Movie(id, title, movieRating, url, lastView);
                 return movie;
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                throwables.getNextException();
             }
         }
         return null;
